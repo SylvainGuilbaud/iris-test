@@ -1,0 +1,78 @@
+services:
+  iris-test:
+    build: 
+      args:
+        IMAGE: ${IMAGE_IRIS_DEV_PREVIEW}
+      context: iris-test
+    image: iris-test  
+    restart: always
+    hostname: iris-test
+    container_name: iris-test
+    environment:
+      - TZ=$TZ
+      - ISC_DATA_DIRECTORY=/databases
+      - ISC_CPF_MERGE_FILE=/merge.cpf
+    ports: 
+      - 10972:1972
+      - 10773:52773
+    volumes:
+      - ./iris-test:/irisdev/app
+      - ./jdbc:/jdbc
+      - databases_test:/databases
+      - journal_test:/journal
+      - journal2_test:/journal2
+      - WIJ_test:/WIJ
+      - ./merge.cpf:/merge.cpf
+
+  postgres:
+    container_name: test-postgres
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgreSQL:/docker-entrypoint-initdb.d/
+      - postgres-data_test:/var/lib/postgresql/data
+    ports:
+      - 52004:5432
+    restart: unless-stopped
+    healthcheck:
+        test: ["CMD", "pg_isready", "-U", "postgres"]
+        interval: 30s
+        timeout: 30s
+        retries: 3
+
+
+       
+  mssql:
+    container_name: test-mssql
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "YourStrong!Passw0rd"
+    ports:
+      - 1433:1433
+    restart: unless-stopped
+    volumes:
+      - ./mssql:/docker-entrypoint-initdb.d/
+      - mssql-data_test:/var/opt/mssql
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "YourStrong!Passw0rd", "-Q", "SELECT 1"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+
+volumes:
+  databases_test:
+    external: true
+    name: ${VOLUME_NAME}databases_test
+  journal_test:
+    external: true
+    name: ${VOLUME_NAME}journal_test
+  journal2_test:
+    external: true
+    name: ${VOLUME_NAME}journal2_test
+  WIJ_test:
+    external: true
+    name: ${VOLUME_NAME}WIJ_test  
+  mssql-data_test:
+  postgres-data_test:

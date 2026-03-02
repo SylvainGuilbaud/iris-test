@@ -1,0 +1,5 @@
+requests>=2.31.0
+iris-pex-embedded-python>=3.0.0
+jsonpath-ng>=1.5.2
+sqlalchemy-iris
+pytest
