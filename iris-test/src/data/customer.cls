@@ -41,7 +41,7 @@ Property Country As %String(MAXLEN = 100, POPSPEC = "##class(data.customer).Coun
 /// Customer creation date
 Property CreatedAt As %TimeStamp [ InitialExpression = {$ZDATETIME($HOROLOG, 3)} ];
 
-Property InternalCreatedAt As datatype.HorologTS;
+Property InternalCreatedAt As datatype.HorologTS [ InitialExpression = {$ZDATETIME($HOROLOG, 3)} ];
 
 /// Whether the customer is active
 Property IsActive As %Boolean [ InitialExpression = 1 ];
