@@ -1,7 +1,7 @@
 {
     "objectscript.conn": {
         "active": true,
-        "ns": "USER",
+        "ns": "IRISAPP",
         "docker-compose": {
             "service": "iris-test",
             "internalPort": 52773

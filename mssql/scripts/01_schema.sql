@@ -1,0 +1,18 @@
+IF DB_ID('MyAppDb') IS NULL
+BEGIN
+  CREATE DATABASE MyAppDb;
+END
+GO
+
+USE MyAppDb;
+GO
+
+IF OBJECT_ID('dbo.Customers', 'U') IS NULL
+BEGIN
+  CREATE TABLE dbo.Customers (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(255) NULL
+  );
+END
+GO

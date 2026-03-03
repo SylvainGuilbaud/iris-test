@@ -10,3 +10,4 @@ AlternateDirectory=/journal2
 
 [Startup]
 SystemMode=TEST
+TerminalPrompt=1,2,8

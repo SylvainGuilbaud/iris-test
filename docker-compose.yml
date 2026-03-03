@@ -23,6 +23,12 @@ services:
       - journal2_test:/journal2
       - WIJ_test:/WIJ
       - ./merge.cpf:/merge.cpf
+    healthcheck:
+      test: ["CMD", "iris", "session", "iris", "-U", "%SYS", "##class(%SYSTEM.OBJ).ShowClasses()"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
 
   postgres:
     container_name: test-postgres
@@ -44,22 +50,25 @@ services:
 
        
   mssql:
-    container_name: test-mssql
-    image: mcr.microsoft.com/mssql/server:latest
+    build:
+      args:
+        IMAGE: mcr.microsoft.com/mssql/server:latest
+      context: mssql
     environment:
       ACCEPT_EULA: "Y"
       MSSQL_SA_PASSWORD: "YourStrong!Passw0rd"
     ports:
       - 1433:1433
     restart: unless-stopped
+    container_name: test-mssql
     volumes:
-      - ./mssql:/docker-entrypoint-initdb.d/
       - mssql-data_test:/var/opt/mssql
     healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "YourStrong!Passw0rd", "-Q", "SELECT 1"]
-      interval: 30s
-      timeout: 30s
-      retries: 3
+      test: ["CMD-SHELL", "timeout 2 bash -c '</dev/tcp/localhost/1433' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
 
 volumes:
   databases_test:
