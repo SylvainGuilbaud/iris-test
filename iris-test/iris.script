@@ -6,6 +6,7 @@
   
     zn "IRISAPP"
     set sc = $SYSTEM.OBJ.Import("/home/irisowner/dev/src","ck")
+    do ##class(EnsLib.HL7.SchemaXML).Import("/home/irisowner/dev/src/HL7v2/HL7v25IHE.HL7")
 
     zn "%SYS"
     Do ##class(Security.Users).UnExpireUserPasswords("*")

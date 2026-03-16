@@ -15,6 +15,7 @@ services:
     ports: 
       - 10972:1972
       - 10773:52773
+      - 29001:29001
     volumes:
       - ./iris-test:/irisdev/app
       - ./jdbc:/jdbc
@@ -23,6 +24,7 @@ services:
       - journal2_test:/journal2
       - WIJ_test:/WIJ
       - ./merge.cpf:/merge.cpf
+      - ./data:/data
     healthcheck:
       test: ["CMD", "iris", "session", "iris", "-U", "%SYS", "##class(%SYSTEM.OBJ).ShowClasses()"]
       interval: 15s
@@ -39,7 +41,7 @@ services:
       - ./postgreSQL:/docker-entrypoint-initdb.d/
       - postgres-data_test:/var/lib/postgresql/data
     ports:
-      - 52004:5432
+      - 52005:5432
     restart: unless-stopped
     healthcheck:
         test: ["CMD", "pg_isready", "-U", "postgres"]
