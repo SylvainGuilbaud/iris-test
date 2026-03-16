@@ -11,7 +11,7 @@ XData RuleDefinition [ XMLNamespace = "http://www.intersystems.com/rule" ]
 <rule name="">
 <constraint name="source" value=""></constraint>
 <when condition="1" comment="">
-<send transform="IRISAPP.transfo.HL7ADT" target="HL7FileOperation"></send>
+<send transform="IRISAPP.transfo.HL7ADT" target="vers SIL TECHNIDATA HL7v2 ADT"></send>
 </when>
 </rule>
 </ruleSet>
