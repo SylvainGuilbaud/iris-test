@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-
-<Category name="TECHNIDATA_SIL" base="2.3">
-
-<MessageStructure name='ADT_XXX' definition='base:MSH~[~base:EVN~]~base:PID~[~base:PD1~]~[~{~base:NK1~}~]~base:NTE~base:PV1~[~base:PV2~]~[~{~base:DB1~}~]~[~{~base:OBX~}~]~[~{~base:AL1~}~]~[~{~base:DG1~}~]~[~base:DRG~]~[~{~base:PR1~[~{~base:ROL~}~]~}~]~[~{~base:GT1~}~]~[~{~base:IN1~[~base:IN2~]~[~base:IN3~]~}~]~[~base:ACC~]~[~base:UB1~]~[~base:UB2~]' description='ADT message'/>
-
-</Category>

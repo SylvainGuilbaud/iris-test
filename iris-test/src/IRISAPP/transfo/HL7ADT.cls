@@ -11,7 +11,7 @@ Parameter TREATEMPTYREPEATINGFIELDASNULL = 0;
 
 XData DTL [ XMLNamespace = "http://www.intersystems.com/dtl" ]
 {
-<transform sourceClass='EnsLib.HL7.Message' targetClass='EnsLib.HL7.Message' sourceDocType='HL7v25IHE:ADT_AXX' targetDocType='TECHNIDATA_SIL:ADT_XXX' create='new' language='objectscript' >
+<transform sourceClass='EnsLib.HL7.Message' targetClass='EnsLib.HL7.Message' sourceDocType='HL7v25IHE:ADT_AXX' targetDocType='nonIHE:ADT_XXX' create='new' language='objectscript' >
 <assign value='source.{MSH}' property='target.{MSH}' action='set' />
 <assign value='"A01"' property='target.{MSH:MessageType.triggerevent}' action='set' />
 <assign value='"2.03"' property='target.{MSH:VersionID}' action='set' />
