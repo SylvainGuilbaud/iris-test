@@ -1,6 +1,7 @@
 requests
 intersystems_pyprod
 pandas
+intersystems-irispython
 # iris-pex-embedded-python
 # jsonpath-ng
 # sqlalchemy-iris

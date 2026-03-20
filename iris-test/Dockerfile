@@ -29,6 +29,7 @@ RUN --mount=type=bind,src=.,dst=. \
 	iris start IRIS && \
 	iris merge IRIS merge.cpf && \
 	iris session IRIS < iris.script && \
-	intersystems_pyprod src/code/quickstart.py && \
+	# . /python/.venv/bin/activate && \
+	# intersystems_pyprod src/code/quickstart.py && \
 	iris stop IRIS quietly
 	
