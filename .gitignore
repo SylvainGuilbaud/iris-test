@@ -5,3 +5,5 @@
 **/out
 **/archive/*
 databases
+**/.venv
+**/__pycache__

@@ -8,6 +8,7 @@ services:
     restart: always
     hostname: iris-test
     container_name: iris-test
+    # command: -b /code/init_pyprod.sh
     environment:
       - TZ=$TZ
       - ISC_DATA_DIRECTORY=/databases
@@ -25,6 +26,7 @@ services:
       - WIJ_test:/WIJ
       - ./merge.cpf:/merge.cpf
       - ./data:/data
+      - ./code:/code
     healthcheck:
       test: ["CMD", "iris", "session", "iris", "-U", "%SYS", "##class(%SYSTEM.OBJ).ShowClasses()"]
       interval: 15s
