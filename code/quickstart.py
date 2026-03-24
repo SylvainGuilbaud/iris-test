@@ -10,7 +10,7 @@ from intersystems_pyprod import (
     BusinessOperation, OutboundAdapter, JsonSerialize, 
     IRISProperty, IRISParameter, IRISLog, Status)
 
-iris_package_name = "aaa"
+iris_package_name = "IRISAPP.pyprod"
 class MyRequest(JsonSerialize):
     content: str
 
@@ -19,8 +19,7 @@ class MyResponse(JsonSerialize):
 
 class MyInAdapter(InboundAdapter):
     def OnTask(self):
-        wait_time = IRISProperty(settings="CallInterval")
-        time.sleep(wait_time)
+        time.sleep(5)
         timestamp = time.time()
         formatted_timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(timestamp)) + f".{int((timestamp % 1) * 1000):03d}"
         self.business_host_process_input("request message from adapter task method with timestamp: " + formatted_timestamp)
