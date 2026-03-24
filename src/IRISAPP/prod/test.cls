@@ -32,12 +32,15 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="FilePath">/data/HL7/out</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="quickstart.MyService" Category="" ClassName="quickstart.MyService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="target">quickstart.MyProcess</Setting>
+  <Item Name="Demo.Temperature.TemperatureService" Category="temp" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="target">Demo.Temperature.TemperatureProcess</Setting>
+    <Setting Target="Adapter" Name="CallInterval">30</Setting>
   </Item>
-  <Item Name="quickstart.MyProcess" Category="" ClassName="quickstart.MyProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureProcess" Category="temp" ClassName="Demo.Temperature.TemperatureProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="target">Demo.Temperature.TemperatureOperation</Setting>
+    <Setting Target="Host" Name="cities">Paris,Lille,Nice,Lyon,Toulouse</Setting>
   </Item>
-  <Item Name="quickstart.MyOperation" Category="" ClassName="quickstart.MyOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureOperation" Category="temp" ClassName="Demo.Temperature.TemperatureOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
 </Production>
 }
