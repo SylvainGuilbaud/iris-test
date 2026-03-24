@@ -20,6 +20,7 @@ services:
       - 29001:29001
     volumes:
       - ./iris-test/src/code:/code
+      - ./iris-test/src/code:/home/irisowner/dev/src/code
       - ./jdbc:/jdbc
       - databases_test:/databases
       - journal_test:/journal

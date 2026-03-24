@@ -18,7 +18,7 @@ class MyResponse(JsonSerialize):
     content: str
 
 class MyInAdapter(InboundAdapter):
-    CallInterval = IRISProperty(datatype="int", settings="CallInterval",default=30,description="Interval between calls in seconds")
+    CallInterval = IRISProperty(datatype="num", settings="CallInterval",default=30,description="Interval between calls in seconds")
     def OnTask(self):
         IRISLog.Info("CallInterval: " + str(self.CallInterval))
         interval = float(self.CallInterval) if self.CallInterval else 5.0
