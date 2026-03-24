@@ -1,10 +1,16 @@
 import time
+import sys
+
+PYPROD_PATH = "/usr/irissys/mgr/python"
+if PYPROD_PATH not in sys.path:
+    sys.path.insert(0, PYPROD_PATH)
+    
 from intersystems_pyprod import (
     InboundAdapter,BusinessService, BusinessProcess, 
     BusinessOperation, OutboundAdapter, JsonSerialize, 
     IRISProperty, IRISParameter, IRISLog, Status)
 
-iris_package_name = "quickstart"
+iris_package_name = "PyProd.Demo"
 class MyRequest(JsonSerialize):
     content: str
 
@@ -12,13 +18,18 @@ class MyResponse(JsonSerialize):
     content: str
 
 class MyInAdapter(InboundAdapter):
+    CallInterval = IRISProperty(settings="CallInterval")
     def OnTask(self):
-        time.sleep(0.5)
-        self.business_host_process_input("request message")
+        IRISLog.Info("CallInterval: " + str(self.CallInterval))
+        interval = float(self.CallInterval) if self.CallInterval else 5.0
+        time.sleep(interval)
+        timestamp = time.time()
+        formatted_timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(timestamp)) + f".{int((timestamp % 1) * 1000):03d}"
+        self.business_host_process_input("request message from adapter task method with timestamp: " + formatted_timestamp)
         return Status.OK()
 
 class MyService(BusinessService):
-    ADAPTER = IRISParameter("quickstart.MyInAdapter")
+    ADAPTER = IRISParameter("PyProd.Demo.MyInAdapter")
     target = IRISProperty(settings="Target")
     def OnProcessInput(self, input):
         persistent_message = MyRequest(input)
@@ -34,7 +45,7 @@ class MyProcess(BusinessProcess):
 
 
 class MyOperation(BusinessOperation):
-    ADAPTER = IRISParameter("quickstart.MyOutAdapter")
+    ADAPTER = IRISParameter("PyProd.Demo.MyOutAdapter")
     def OnMessage(self, input):
         status = self.ADAPTER.custom_method(input)
         response = MyResponse("response message")
