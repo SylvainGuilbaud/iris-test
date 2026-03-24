@@ -30,5 +30,6 @@ RUN --mount=type=bind,src=.,dst=. \
 	iris merge IRIS merge.cpf && \
 	iris session IRIS < iris.script && \
 	/python/.venv/bin/intersystems_pyprod src/code/quickstart.py && \
+	/python/.venv/bin/intersystems_pyprod src/code/temperature.py && \
 	iris stop IRIS quietly
 	

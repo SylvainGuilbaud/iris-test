@@ -19,7 +19,7 @@ services:
       - 10773:52773
       - 29001:29001
     volumes:
-      - ./iris-test:/irisdev/app
+      - ./iris-test/src/code:/code
       - ./jdbc:/jdbc
       - databases_test:/databases
       - journal_test:/journal
@@ -27,7 +27,6 @@ services:
       - WIJ_test:/WIJ
       - ./merge.cpf:/merge.cpf
       - ./data:/data
-      - ./code:/code
     healthcheck:
       test: ["CMD", "iris", "session", "iris", "-U", "%SYS", "##class(%SYSTEM.OBJ).ShowClasses()"]
       interval: 15s
