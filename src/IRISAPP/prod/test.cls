@@ -32,6 +32,13 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="FilePath">/data/HL7/out</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
+  <Item Name="quickstart.MyService" Category="" ClassName="quickstart.MyService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="target">quickstart.MyProcess</Setting>
+  </Item>
+  <Item Name="quickstart.MyProcess" Category="" ClassName="quickstart.MyProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="quickstart.MyOperation" Category="" ClassName="quickstart.MyOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
 </Production>
 }
 

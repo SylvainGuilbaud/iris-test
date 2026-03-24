@@ -13,6 +13,7 @@ services:
       - TZ=$TZ
       - ISC_DATA_DIRECTORY=/databases
       - ISC_CPF_MERGE_FILE=/merge.cpf
+      - PYTHONPATH=/usr/irissys/lib/python:/usr/irissys/mgr/python
     ports: 
       - 10972:1972
       - 10773:52773

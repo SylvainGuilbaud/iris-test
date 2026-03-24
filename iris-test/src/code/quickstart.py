@@ -1,5 +1,4 @@
 import time
-
 from intersystems_pyprod import (
     InboundAdapter,BusinessService, BusinessProcess, 
     BusinessOperation, OutboundAdapter, JsonSerialize, 
@@ -29,7 +28,7 @@ class MyService(BusinessService):
 
 class MyProcess(BusinessProcess):
     target = IRISProperty(settings="Target")
-    def on_request(self, input):
+    def OnRequest(self, input):
         status, response = self.SendRequestSync(self.target,input)
         return status, response
 
