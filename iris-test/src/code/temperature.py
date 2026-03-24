@@ -48,7 +48,7 @@ class BatchTemperatureResponse(JsonSerialize):
 # Inbound Adapter (CallInterval)
 # =========================
 class CallIntervalAdapter(InboundAdapter):
-    CallInterval = IRISProperty(settings="CallInterval")
+    CallInterval = IRISProperty(datatype="int", settings="CallInterval", default=30, description="Interval between calls in seconds")
 
     def OnTask(self):
         IRISLog.Info("Interval: " + str(self.CallInterval))
@@ -63,7 +63,7 @@ class CallIntervalAdapter(InboundAdapter):
 # =========================
 class TemperatureService(BusinessService):
     ADAPTER = IRISParameter("Demo.Temperature.CallIntervalAdapter")
-    target = IRISProperty(settings="Target")
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}")
 
     def OnProcessInput(self, input):
         req = TickRequest(input)
@@ -77,7 +77,7 @@ class TemperatureService(BusinessService):
 # Business Process
 # =========================
 class TemperatureProcess(BusinessProcess):
-    target = IRISProperty(settings="Target")
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}")
     cities = IRISProperty(settings="Cities")  # ex: "Paris,Lyon,Marseille"
 
     def OnRequest(self, input):

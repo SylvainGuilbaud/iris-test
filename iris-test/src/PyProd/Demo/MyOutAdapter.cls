@@ -9,7 +9,7 @@ Method OnInit() As %Status
     s status = $$$OK
     try{
         set pyprod = ##class(%SYS.Python).Import("intersystems_pyprod")
-        do $method(pyprod,"_add_to_sys_path","/home/irisowner/dev/src/code")
+        do $method(pyprod,"_add_to_sys_path","/code")
         set PyLib = ##class(%SYS.Python).Import("quickstart")
         set ..PythonClassObject = PyLib.MyOutAdapter($this)
     } catch e {

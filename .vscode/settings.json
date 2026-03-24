@@ -6,5 +6,8 @@
             "service": "iris-test",
             "internalPort": 52773
         }
+    },
+    "objectscript.export": {
+        "folder": "iris-test/src"
     }
 }

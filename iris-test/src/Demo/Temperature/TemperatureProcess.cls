@@ -6,7 +6,7 @@ Property target As %VarString;
 
 Property cities As %VarString;
 
-Parameter SETTINGS = "target:Target,cities:Cities";
+Parameter SETTINGS = "target:Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId},cities:Cities";
 
 Property PythonClassName As %String(MAXLEN = "") [ InitialExpression = "TemperatureProcess" ];
 

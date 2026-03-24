@@ -2,7 +2,8 @@
 Class Demo.Temperature.CallIntervalAdapter Extends Ens.InboundAdapter
 {
 
-Property CallInterval As %Numeric;
+/// Interval between calls in seconds
+Property CallInterval As %Numeric [ InitialExpression = 30 ];
 
 Parameter SETTINGS = "CallInterval:CallInterval";
 

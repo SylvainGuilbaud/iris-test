@@ -18,7 +18,7 @@ class MyResponse(JsonSerialize):
     content: str
 
 class MyInAdapter(InboundAdapter):
-    CallInterval = IRISProperty(settings="CallInterval")
+    CallInterval = IRISProperty(datatype="int", settings="CallInterval",default=30,description="Interval between calls in seconds")
     def OnTask(self):
         IRISLog.Info("CallInterval: " + str(self.CallInterval))
         interval = float(self.CallInterval) if self.CallInterval else 5.0
@@ -30,7 +30,7 @@ class MyInAdapter(InboundAdapter):
 
 class MyService(BusinessService):
     ADAPTER = IRISParameter("PyProd.Demo.MyInAdapter")
-    target = IRISProperty(settings="Target")
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}",default="PyProd.Demo.MyProcess")
     def OnProcessInput(self, input):
         persistent_message = MyRequest(input)
         status, response = self.SendRequestSync(self.target, persistent_message)
@@ -38,7 +38,7 @@ class MyService(BusinessService):
         return status
 
 class MyProcess(BusinessProcess):
-    target = IRISProperty(settings="Target")
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}",default="PyProd.Demo.MyOperation")
     def OnRequest(self, input):
         status, response = self.SendRequestSync(self.target,input)
         return status, response

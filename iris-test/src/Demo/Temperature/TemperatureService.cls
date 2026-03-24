@@ -6,7 +6,7 @@ Property target As %VarString;
 
 Parameter ADAPTER = "Demo.Temperature.CallIntervalAdapter";
 
-Parameter SETTINGS = "target:Target";
+Parameter SETTINGS = "target:Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}";
 
 Property PythonClassObject As %SYS.Python;
 
