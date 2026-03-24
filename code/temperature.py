@@ -36,18 +36,12 @@ class CityTemperatureRequest(JsonSerialize):
     city: str
 
 
-class CityTemperature(JsonSerialize):
-    city: str
-    temperature: float
-    unit: str
-
-
 class CityTemperatureResponse(JsonSerialize):
-    cities: list  # Liste de CityTemperature
+    cities: list  # Liste de dictionnaires
 
 
 class BatchTemperatureResponse(JsonSerialize):
-    cities: list  # Liste de CityTemperature
+    cities: list  # Liste de dictionnaires
 
 
 # =========================
@@ -105,16 +99,23 @@ class TemperatureProcess(BusinessProcess):
 # Business Operation
 # =========================
 class TemperatureOperation(BusinessOperation):
-    # ADAPTER supprimé
 
     def OnMessage(self, input):
-        status, temp = self._get_temperature_c(input.city)
+        status, data = self._get_temperature_c(input.city)
 
-        if temp is None:
-            city_temp = {"city": input.city, "temperature": None, "unit": "°C"}
+        if data is None:
+            city_temp = {"city": input.city, "temperature": None, "unit": "°C", "country_code": None, "timezone": None, "latitude": None, "longitude": None, "timestamp": None}
         else:
-            city_temp = {"city": input.city, "temperature": temp, "unit": "°C"}
-
+            city_temp = {
+                "city": input.city,
+                "temperature": data["temperature"],
+                "unit": "°C",
+                "country_code": data["country_code"],
+                "timezone": data["timezone"],
+                "latitude": data["latitude"],
+                "longitude": data["longitude"],
+                "timestamp": data["timestamp"]
+            }
 
         return status, CityTemperatureResponse([city_temp])
 
@@ -129,17 +130,31 @@ class TemperatureOperation(BusinessOperation):
         if not results:
             return Status.OK(), None
 
-        lat = results[0]["latitude"]
-        lon = results[0]["longitude"]
+        result = results[0]
+        lat = result["latitude"]
+        lon = result["longitude"]
+        country_code = result.get("country_code", "Unknown")
+        timezone = result.get("timezone", "Unknown")
 
         # 2) Température courante
         weather_url = (
             "https://api.open-meteo.com/v1/forecast?"
             + urllib.parse.urlencode({"latitude": lat, "longitude": lon, "current": "temperature_2m"})
         )
+        IRISLog.Info(weather_url)
         weather = self._get_json(weather_url)
         temp = (weather.get("current") or {}).get("temperature_2m")
-        return Status.OK(), temp
+        timestamp = (weather.get("current") or {}).get("time")
+        IRISLog.Info(f"Fetched temperature for {city} at {timestamp}: {temp}°C")
+        
+        return Status.OK(), {
+            "temperature": temp,
+            "country_code": country_code,
+            "latitude": lat,
+            "longitude": lon,
+            "timezone": timezone,
+            "timestamp": timestamp
+        }
 
     def _get_json(self, url: str):
         with urllib.request.urlopen(url, timeout=10) as resp:
