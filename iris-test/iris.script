@@ -9,6 +9,18 @@
     do ##class(EnsLib.HL7.SchemaXML).Import("/home/irisowner/dev/src/HL7v2/HL7v25IHE.HL7")
     do ##class(EnsLib.HL7.SchemaXML).Import("/home/irisowner/dev/src/HL7v2/nonIHE.HL7")
     do ##class("Ens.Director").SetAutoStart("IRISAPP.prod.test", 0)
+    do ##class(EnsLib.SQL.InboundAdapter).SetPersistentValue("get commandes from MSSQL","montant",200)
+    do ##class(EnsLib.SQL.InboundAdapter).SetPersistentValue("get commandes from MSSQL","status","Completed")
+    &sql(insert or update Ens_Config.DefaultSettings 
+        (ProductionName, ItemName,SettingName,SettingValue) 
+        values
+        ('*','Demo.Temperature.TemperatureService','ArchiveIO',1))
+    &sql(insert or update Ens_Config.DefaultSettings 
+        (ProductionName, ItemName,SettingName,SettingValue) 
+        values
+        ('*','Demo.Temperature.TemperatureService','CallInterval',3600))
+
+    #; set ^Ens.Config.DefaultSettingsD("*","Demo.Temperature.TemperatureService","*","CallInterval")	=	$lb("3600","",0)
 
     zn "%SYS"
     Do ##class(Security.Users).UnExpireUserPasswords("*")

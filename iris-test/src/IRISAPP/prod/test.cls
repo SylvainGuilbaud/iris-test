@@ -32,15 +32,29 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="FilePath">/data/HL7/out</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="Demo.Temperature.TemperatureService" Category="temp" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="target">Demo.Temperature.TemperatureProcess</Setting>
-    <Setting Target="Adapter" Name="CallInterval">30</Setting>
-  </Item>
   <Item Name="Demo.Temperature.TemperatureProcess" Category="temp" ClassName="Demo.Temperature.TemperatureProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="target">Demo.Temperature.TemperatureOperation</Setting>
     <Setting Target="Host" Name="cities">Paris,Lille,Nice,Lyon,Toulouse</Setting>
   </Item>
   <Item Name="Demo.Temperature.TemperatureOperation" Category="temp" ClassName="Demo.Temperature.TemperatureOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="Demo.Temperature.TemperatureService" Category="" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="ROUTEUR HL7" Category="" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">HL7Router.ROUTEURHL7</Setting>
+  </Item>
+  <Item Name="get commandes from MSSQL" Category="" ClassName="EnsLib.SQL.Service.GenericService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="DSN">mssql</Setting>
+    <Setting Target="Adapter" Name="JGService">%JDBC Server</Setting>
+    <Setting Target="Adapter" Name="Query"><![CDATA[select id,customer_id,order_date,total_amount,status from dbo.commande
+where total_amount > ?
+and status = ?]]></Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">commandes</Setting>
+    <Setting Target="Adapter" Name="Parameters"><![CDATA[&montant,&status]]></Setting>
+  </Item>
+  <Item Name="commandes" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.commandesRoutingRule</Setting>
   </Item>
 </Production>
 }
