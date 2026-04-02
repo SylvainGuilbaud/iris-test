@@ -30,7 +30,7 @@ class MyInAdapter(InboundAdapter):
 
 class MyService(BusinessService):
     ADAPTER = IRISParameter("PyProd.Demo.MyInAdapter")
-    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}",default="PyProd.Demo.MyProcess")
+    target = IRISProperty(settings=":selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}",default="PyProd.Demo.MyProcess")
     def OnProcessInput(self, input):
         persistent_message = MyRequest(input)
         status, response = self.SendRequestSync(self.target, persistent_message)
