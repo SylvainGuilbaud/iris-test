@@ -2,7 +2,7 @@
 Class Demo.Temperature.TemperatureService Extends Ens.BusinessService
 {
 
-Property target As %VarString;
+Property target As %VarString [ InitialExpression = "Demo.Temperature.TemperatureProcess" ];
 
 Parameter ADAPTER = "Demo.Temperature.CallIntervalAdapter";
 

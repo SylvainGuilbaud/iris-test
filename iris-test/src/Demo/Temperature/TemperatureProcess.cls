@@ -2,7 +2,7 @@
 Class Demo.Temperature.TemperatureProcess Extends Ens.BusinessProcess
 {
 
-Property target As %VarString;
+Property target As %VarString [ InitialExpression = "Demo.Temperature.TemperatureOperation" ];
 
 Property cities As %VarString;
 

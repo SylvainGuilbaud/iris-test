@@ -2,7 +2,7 @@ services:
   iris-test:
     build: 
       args:
-        IMAGE: ${IMAGE_IRIS_DEV_PREVIEW}
+        IMAGE: ${IMAGE_IRIS_DEV_EM}
       context: iris-test
     image: iris-test  
     restart: always

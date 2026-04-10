@@ -1,0 +1,1 @@
+iop --migrate settings.py

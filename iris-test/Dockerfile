@@ -2,7 +2,7 @@ ARG IMAGE=containers.intersystems.com/intersystems/irishealth-community:latest-e
 FROM $IMAGE 
 USER root
 COPY requirements.txt /tmp/requirements.txt
-COPY src/code/intersystems_pyprod-0.1.2-py3-none-any.whl /tmp/intersystems_pyprod-0.1.2-py3-none-any.whl
+# COPY src/code/intersystems_pyprod-0.1.2-py3-none-any.whl /tmp/intersystems_pyprod-0.1.2-py3-none-any.whl
 RUN apt-get update && apt-get install -y \
 	python3-venv \
     sudo &&\
