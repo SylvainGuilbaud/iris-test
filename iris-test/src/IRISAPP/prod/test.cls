@@ -78,6 +78,10 @@ and status = ?]]></Setting>
   <Item Name="vers LIS ASTM E1394" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
   </Item>
+  <Item Name="vers BASE PATIENT" Category="" ClassName="IRISAPP.operation.patientSQL" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="DSN">iris</Setting>
+    <Setting Target="Adapter" Name="JGService">%JDBC Server</Setting>
+  </Item>
 </Production>
 }
 
