@@ -20,6 +20,8 @@ RUN apt-get update && apt-get install -y \
 
 USER ${ISC_PACKAGE_MGRUSER} 
 WORKDIR /home/irisowner/dev
+RUN mkdir /home/irisowner/dev/data/ && \
+  chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /home/irisowner/dev/data 
 
 ENV IRISUSERNAME=SuperUser
 ENV IRISPASSWORD=SYS
@@ -27,6 +29,14 @@ ENV IRISNAMESPACE=IRISAPP
 ENV PYTHON_PATH=/usr/irissys/bin/
 ENV COMLIB=$ISC_PACKAGE_INSTALLDIR/bin
 ENV PYTHONPATH=$ISC_PACKAGE_INSTALLDIR/lib/python:/usr/irissys/mgr/python
+
+
+# COPY src/code/download-trips-to-csv.py download.py
+
+# # uncomment more lines to load more data
+# RUN python3 download.py 2020 1
+# # RUN python3 download.py 2020 2
+# # RUN python3 download.py 2020 3
 
 RUN --mount=type=bind,src=.,dst=. \
 	iris start IRIS && \

@@ -34,7 +34,7 @@ XData ProductionDefinition
   </Item>
   <Item Name="Demo.Temperature.TemperatureProcess" Category="temp" ClassName="Demo.Temperature.TemperatureProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="target">Demo.Temperature.TemperatureOperation</Setting>
-    <Setting Target="Host" Name="cities">Paris,Lille,Nice,Lyon,Toulouse</Setting>
+    <Setting Target="Host" Name="cities">Paris,Lille,Nice,Lyon,Toulouse,Nantes,Bordeaux,Marseille,Brest,Strasbourg,Montpellier,Clermont-Ferrand,Annecy,Le Mans,Angers,Tours,Orléans,Rennes,Poitiers,Amiens,Roubaix,Metz,Pau</Setting>
   </Item>
   <Item Name="Demo.Temperature.TemperatureOperation" Category="temp" ClassName="Demo.Temperature.TemperatureOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
@@ -55,6 +55,23 @@ and status = ?]]></Setting>
   </Item>
   <Item Name="commandes" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.commandesRoutingRule</Setting>
+  </Item>
+  <Item Name="de LIS ASTM" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="TargetConfigNames">routeur</Setting>
+    <Setting Target="Adapter" Name="ArchivePath">/data/ASTM/archive/</Setting>
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM/in/</Setting>
+    <Setting Target="Adapter" Name="WorkPath">/data/ASTM/work/</Setting>
+  </Item>
+  <Item Name="vers LIS ASTM" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM/out/</Setting>
+  </Item>
+  <Item Name="routeur" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.routeurRoutingRule</Setting>
+  </Item>
+  <Item Name="vers BASE PATIENT" Category="" ClassName="IRISAPP.operation.patientSQL" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="DSN">iris</Setting>
+    <Setting Target="Adapter" Name="JGService">%JDBC Server</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
 </Production>
 }

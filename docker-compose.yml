@@ -34,7 +34,19 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
-
+  jupyter:
+    build: 
+      context: jupyter
+    restart: always
+    hostname: jupyter
+    environment:
+      ISC_TEST_HOSTNAME: iris-test
+      ISC_TEST_PORT: 1972
+      ISC_TEST_NAMESPACE: USER
+      ISC_TEST_USER: _SYSTEM
+      ISC_TEST_PASSWORD: SYS
+    ports:
+      - 18888:8888
   postgres:
     container_name: test-postgres
     image: postgres:latest

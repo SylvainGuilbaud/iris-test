@@ -22,7 +22,7 @@
     set SQLGateway.Name = "iris"
     set SQLGateway.isJDBC = 1
     set SQLGateway.driver = "com.intersystems.jdbc.IRISDriver"
-    set SQLGateway.URL = "jdbc:IRIS://host.docker.internal:11972/IRISAPP"
+    set SQLGateway.URL = "jdbc:IRIS://host.docker.internal:10972/IRISAPP"
     set SQLGateway.classpath = "/jdbc/intersystems-jdbc-3.10.5.jar"
     set SQLGateway.Usr = "_SYSTEM"
     set SQLGateway.pwd = "SYS"
