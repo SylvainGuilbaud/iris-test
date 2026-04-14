@@ -6,21 +6,16 @@ XData ProductionDefinition
 <Production Name="IRISAPP.prod.test" TestingEnabled="true" LogGeneralTraceEvents="true">
   <Description></Description>
   <ActorPoolSize>2</ActorPoolSize>
-  <Item Name="MsgRouter" Category="" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="This handles message routing logic." LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="Validation"></Setting>
-    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.test.RoutingRule</Setting>
-    <Setting Target="Host" Name="BadMessageHandler">BadMessageHandler</Setting>
-  </Item>
   <Item Name="de HL7 ADT IHE PAM FR - TCP" Category="" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
     <Setting Target="Adapter" Name="Port">29001</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">MsgRouter</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">IHEPAM</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
   </Item>
   <Item Name="de HL7 ADT IHE PAM FR - FICHIER" Category="" ClassName="EnsLib.HL7.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="This is a default HL7 File Service." LogTraceEvents="true" Schedule="">
-    <Setting Target="Host" Name="TargetConfigNames">MsgRouter</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">IHEPAM</Setting>
     <Setting Target="Adapter" Name="ArchivePath">/data/HL7/archive</Setting>
     <Setting Target="Adapter" Name="FilePath">/data/HL7/in</Setting>
     <Setting Target="Adapter" Name="FileSpec">*.HL7</Setting>
@@ -40,10 +35,7 @@ XData ProductionDefinition
   </Item>
   <Item Name="Demo.Temperature.TemperatureService" Category="" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
   </Item>
-  <Item Name="ROUTEUR HL7" Category="" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="BusinessRuleName">HL7Router.ROUTEURHL7</Setting>
-  </Item>
-  <Item Name="get commandes from MSSQL" Category="" ClassName="EnsLib.SQL.Service.GenericService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="get commandes from MSSQL" Category="" ClassName="EnsLib.SQL.Service.GenericService" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="DSN">mssql</Setting>
     <Setting Target="Adapter" Name="JGService">%JDBC Server</Setting>
     <Setting Target="Adapter" Name="Query"><![CDATA[select id,customer_id,order_date,total_amount,status from dbo.commande
@@ -56,22 +48,35 @@ and status = ?]]></Setting>
   <Item Name="commandes" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.commandesRoutingRule</Setting>
   </Item>
-  <Item Name="de LIS ASTM" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="TargetConfigNames">routeur</Setting>
-    <Setting Target="Adapter" Name="ArchivePath">/data/ASTM/archive/</Setting>
-    <Setting Target="Adapter" Name="FilePath">/data/ASTM/in/</Setting>
-    <Setting Target="Adapter" Name="WorkPath">/data/ASTM/work/</Setting>
+  <Item Name="de LIS ASTM E1394" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="TargetConfigNames">LIS</Setting>
+    <Setting Target="Adapter" Name="ArchivePath"></Setting>
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/in/</Setting>
+    <Setting Target="Adapter" Name="WorkPath"></Setting>
   </Item>
-  <Item Name="vers LIS ASTM" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Adapter" Name="FilePath">/data/ASTM/out/</Setting>
+  <Item Name="LIS" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.LISRoutingRule</Setting>
   </Item>
-  <Item Name="routeur" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.routeurRoutingRule</Setting>
+  <Item Name="IHEPAM" Category="" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="This handles message routing logic." LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="Validation"></Setting>
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.IHEPAMRoutingRule</Setting>
+    <Setting Target="Host" Name="BadMessageHandler">BadMessageHandler</Setting>
   </Item>
-  <Item Name="vers BASE PATIENT" Category="" ClassName="IRISAPP.operation.patientSQL" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
-    <Setting Target="Adapter" Name="DSN">iris</Setting>
-    <Setting Target="Adapter" Name="JGService">%JDBC Server</Setting>
-    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  <Item Name="Ens.Alert" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.AlertRule</Setting>
+  </Item>
+  <Item Name="de LIS ASTM E1238" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="TargetConfigNames">LIS</Setting>
+    <Setting Target="Adapter" Name="ArchivePath"></Setting>
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1238/in/</Setting>
+    <Setting Target="Adapter" Name="WorkPath"></Setting>
+    <Setting Target="Host" Name="DocSchemaCategory">E1238</Setting>
+  </Item>
+  <Item Name="vers LIS ASTM E1238" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1238/out/</Setting>
+  </Item>
+  <Item Name="vers LIS ASTM E1394" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
   </Item>
 </Production>
 }

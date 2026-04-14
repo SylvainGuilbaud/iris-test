@@ -1,5 +1,5 @@
 /// 
-Class IRISAPP.prod.test.AlertRule Extends Ens.Rule.Definition
+Class IRISAPP.prod.AlertRule Extends Ens.Rule.Definition
 {
 
 Parameter RuleAssistClass = "EnsLib.MsgRouter.RuleAssist";

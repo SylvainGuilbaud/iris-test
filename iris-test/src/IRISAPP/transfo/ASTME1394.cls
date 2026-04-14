@@ -1,4 +1,4 @@
-Class IRISAPP.transfo.ASTM Extends Ens.DataTransformDTL [ DependsOn = (EnsLib.EDI.ASTM.Document, msg.list.patient) ]
+Class IRISAPP.transfo.ASTME1394 Extends Ens.DataTransformDTL [ DependsOn = (EnsLib.EDI.ASTM.Document, msg.list.patient) ]
 {
 
 Parameter GENERATEEMPTYSEGMENTS = 0;

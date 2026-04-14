@@ -1,0 +1,9 @@
+H|^~\&|||TDCM^TDConnectionManager||ORU|||NXL^VERIF||P|A.2.|20260414140901
+P|0001|ID00000016|^266087743111555||PASDEBOL^Ella|DUBOLE|20260414|F||^^^^^||^^^
+OBR|1|0020152721^6040152721||NA^Sodium^L|R||||||N|||||||
+OBX|1|NM|NA^Sodium^L||138.56|||N|||F
+OBR|2|0020152721^6040152721||CL^Chlore^L|R||||||N|||||||
+OBX|1|NM|CL^Chlore^L||103|||N|||F
+OBR|3|0020152721^6040152721||K^Potassium^L|R||||||N|||||||
+OBX|1|NM|K^Potassium^L||4.82|||N|||F
+L|||1|9

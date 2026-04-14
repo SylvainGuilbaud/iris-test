@@ -1,0 +1,152 @@
+ROUTINE setup
+
+; Script de configuration pour l'API Patient REST
+; Execute avec: do ##class(%Routine).Run("setup")
+
+setup
+    ; Compilation des classes
+    write "Compilation des classes API Patient...",!
+    
+    set status = $system.OBJ.CompileList("data.patient.cls,api.PatientAPI.cls,api.PatientWebApp.cls", "ck")
+    if $$$ISERR(status) {
+        write "Erreur lors de la compilation: ", $system.Status.GetErrorText(status),!
+        return
+    }
+    
+    write "Compilation réussie!",!
+    
+    ; Configuration de l'application web
+    write "Configuration de l'application web...",!
+    
+    set status = ##class(api.PatientWebApp).Setup()
+    if $$$ISERR(status) {
+        write "Erreur lors de la configuration: ", $system.Status.GetErrorText(status),!
+        return
+    }
+    
+    write "Configuration terminée avec succès!",!
+    write "==================================",!
+    write "L'API Patient REST est maintenant disponible",!
+    write "URL de base: http://localhost:52773/api/v1",!
+    write "==================================",!
+    
+    ; Création de données de test
+    write "Création de données de test...",!
+    do createTestData
+    
+    ; Affichage de la documentation
+    write ##class(api.PatientWebApp).GetApiDocumentation()
+    
+    quit
+
+createTestData
+    ; Création de quelques patients de test
+    write "Création de patients de test...",!
+    
+    ; Patient 1
+    set patient1 = ##class(data.patient).%New()
+    set patient1.PatientId = "P001"
+    set patient1.MedicalRecordNumber = "MRN123456"
+    set patient1.FirstName = "Jean"
+    set patient1.LastName = "Dupont"
+    set patient1.DateOfBirth = $zdh("1980-06-15", 3)
+    set patient1.Gender = "M"
+    set patient1.Phone = "+33-1-23-45-67-89"
+    set patient1.Email = "jean.dupont@email.com"
+    set patient1.AddressLine1 = "123 Rue de la Paix"
+    set patient1.City = "Paris"
+    set patient1.State = "Île-de-France"
+    set patient1.PostalCode = "75001"
+    set patient1.Country = "France"
+    
+    set status = patient1.%Save()
+    if $$$ISERR(status) {
+        write "Erreur lors de la création du patient 1: ", $system.Status.GetErrorText(status),!
+    } else {
+        write "Patient 1 créé avec ID: ", patient1.%Id(),!
+    }
+    
+    ; Patient 2
+    set patient2 = ##class(data.patient).%New()
+    set patient2.PatientId = "P002"
+    set patient2.MedicalRecordNumber = "MRN789012"
+    set patient2.FirstName = "Marie"
+    set patient2.LastName = "Martin"
+    set patient2.DateOfBirth = $zdh("1975-03-22", 3)
+    set patient2.Gender = "F"
+    set patient2.Phone = "+33-1-98-76-54-32"
+    set patient2.Email = "marie.martin@email.com"
+    set patient2.AddressLine1 = "456 Avenue des Champs"
+    set patient2.AddressLine2 = "Appartement 5B"
+    set patient2.City = "Lyon"
+    set patient2.State = "Auvergne-Rhône-Alpes"
+    set patient2.PostalCode = "69001"
+    set patient2.Country = "France"
+    
+    set status = patient2.%Save()
+    if $$$ISERR(status) {
+        write "Erreur lors de la création du patient 2: ", $system.Status.GetErrorText(status),!
+    } else {
+        write "Patient 2 créé avec ID: ", patient2.%Id(),!
+    }
+    
+    ; Patient 3
+    set patient3 = ##class(data.patient).%New()
+    set patient3.PatientId = "P003"
+    set patient3.MedicalRecordNumber = "MRN345678"
+    set patient3.FirstName = "Pierre"
+    set patient3.LastName = "Durand"
+    set patient3.DateOfBirth = $zdh("1990-12-08", 3)
+    set patient3.Gender = "M"
+    set patient3.Phone = "+33-4-56-78-90-12"
+    set patient3.Email = "pierre.durand@email.com"
+    set patient3.AddressLine1 = "789 Boulevard Saint-Germain"
+    set patient3.City = "Marseille"
+    set patient3.State = "Provence-Alpes-Côte d'Azur"
+    set patient3.PostalCode = "13001"
+    set patient3.Country = "France"
+    
+    set status = patient3.%Save()
+    if $$$ISERR(status) {
+        write "Erreur lors de la création du patient 3: ", $system.Status.GetErrorText(status),!
+    } else {
+        write "Patient 3 créé avec ID: ", patient3.%Id(),!
+    }
+    
+    write "Données de test créées avec succès!",!
+    quit
+
+remove
+    ; Suppression de l'application web
+    write "Suppression de l'application web Patient API...",!
+    
+    set status = ##class(api.PatientWebApp).Remove()
+    if $$$ISERR(status) {
+        write "Erreur lors de la suppression: ", $system.Status.GetErrorText(status),!
+        return
+    }
+    
+    write "Application web supprimée avec succès!",!
+    quit
+
+test
+    ; Test basique de l'API
+    write "Test de l'API Patient...",!
+    
+    ; Test GET all patients
+    set request = ##class(%Net.HttpRequest).%New()
+    set request.Server = "localhost"
+    set request.Port = 52773
+    set request.Https = 0
+    
+    write "Test GET /api/v1/patient...",!
+    set status = request.Get("/api/v1/patient")
+    
+    if $$$ISOK(status) {
+        write "Statut: ", request.HttpResponse.StatusCode,!
+        write "Réponse: ", request.HttpResponse.Data.Read(),!
+    } else {
+        write "Erreur: ", $system.Status.GetErrorText(status),!
+    }
+    
+    quit

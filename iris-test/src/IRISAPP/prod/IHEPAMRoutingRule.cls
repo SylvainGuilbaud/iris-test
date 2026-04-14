@@ -1,5 +1,5 @@
 /// 
-Class IRISAPP.prod.test.RoutingRule Extends Ens.Rule.Definition
+Class IRISAPP.prod.IHEPAMRoutingRule Extends Ens.Rule.Definition
 {
 
 Parameter RuleAssistClass = "EnsLib.HL7.MsgRouter.RuleAssist";
