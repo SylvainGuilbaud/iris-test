@@ -65,16 +65,6 @@ and status = ?]]></Setting>
   <Item Name="Ens.Alert" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.AlertRule</Setting>
   </Item>
-  <Item Name="de LIS ASTM E1238" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="TargetConfigNames">LIS</Setting>
-    <Setting Target="Adapter" Name="ArchivePath"></Setting>
-    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1238/in/</Setting>
-    <Setting Target="Adapter" Name="WorkPath"></Setting>
-    <Setting Target="Host" Name="DocSchemaCategory">E1238</Setting>
-  </Item>
-  <Item Name="vers LIS ASTM E1238" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1238/out/</Setting>
-  </Item>
   <Item Name="vers LIS ASTM E1394" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
   </Item>

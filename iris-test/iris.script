@@ -5,11 +5,20 @@
     zpm "enable -map -globally"
   
     zn "IRISAPP"
+    do $system.OBJ.Import("/home/irisowner/dev/src/ASTME1238.inc","ck")
+    do $system.OBJ.Import("/home/irisowner/dev/src/ASTME1238Errors.inc","ck")
+
     set sc = $SYSTEM.OBJ.Import("/home/irisowner/dev/src","ck")
     do ##class(EnsLib.HL7.SchemaXML).Import("/home/irisowner/dev/src/HL7v2/HL7v25IHE.HL7")
     do ##class(EnsLib.HL7.SchemaXML).Import("/home/irisowner/dev/src/HL7v2/nonIHE.HL7")
+
     do ##class(EnsLib.EDI.ASTM.SchemaXML).Import("/home/irisowner/dev/src/ASTM/E1238.AST")
     do ##class(EnsLib.EDI.ASTM.SchemaXML).Import("/home/irisowner/dev/src/ASTM/E1238.Add.AST")
+
+    do ##class(ASTM.EDI.E1238.SchemaXML).Import("/home/irisowner/dev/src/ASTM/E1238.AST")
+    do ##class(ASTM.EDI.E1238.SchemaXML).Import("/home/irisowner/dev/src/ASTM/E1238.Add.AST")
+    
+
     do ##class("Ens.Director").SetAutoStart("IRISAPP.prod.test", 0)
     do ##class(EnsLib.SQL.InboundAdapter).SetPersistentValue("get commandes from MSSQL","montant",200)
     do ##class(EnsLib.SQL.InboundAdapter).SetPersistentValue("get commandes from MSSQL","status","Completed")

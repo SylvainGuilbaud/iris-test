@@ -16,16 +16,3 @@ OBX|2|NM|TRIG^Triglycerides^L|2|125|mg/dL|<150|N|||F|||20260414132000||||
 OBX|3|NM|HDL^HDL Cholesterol^L|3|55|mg/dL|>40|N|||F|||20260414132000||||
 OBX|4|NM|LDL^LDL Cholesterol^L|4|115|mg/dL|<130|N|||F|||20260414132000||||
 L|1|N
-OBX|3|NM|HGB^Hemoglobin^L|3|14.2|g/dL|12.0-16.0|N|||F|||20260414130500||||
-OBX|4|NM|HCT^Hematocrit^L|4|42.5|%|36-46|N|||F|||20260414130500||||
-OBX|5|NM|PLT^Platelets^L|5|285|10E3/uL|150-450|N|||F|||20260414130500||||
-P|2||987654321||Martin^Marie^Claire^^Mme||19751203|F|||456 Avenue des Champs^^Lyon^^69001^FR||(33)478901234|||||||||||||||||||||
-OBR|2|ORD002|LAB002|GLUC^GLUCOSE^L|||20260414131500|||||||||Dr^Durand^Pierre||||||||||||||||||||
-OBX|1|NM|GLUC^Glucose^L|1|95|mg/dL|70-110|N|||F|||20260414131500||||
-P|3||555777999||Leroy^Paul^Andre^^M||19901122|M|||789 Boulevard Saint-Germain^^Marseille^^13001^FR||(33)491234567|||||||||||||||||||||
-OBR|3|ORD003|LAB003|LIP^LIPID PANEL^L|||20260414132000|||||||||Dr^Bernard^Sophie||||||||||||||||||||
-OBX|1|NM|CHOL^Total Cholesterol^L|1|195|mg/dL|<200|N|||F|||20260414132000||||
-OBX|2|NM|TRIG^Triglycerides^L|2|125|mg/dL|<150|N|||F|||20260414132000||||
-OBX|3|NM|HDL^HDL Cholesterol^L|3|55|mg/dL|>40|N|||F|||20260414132000||||
-OBX|4|NM|LDL^LDL Cholesterol^L|4|115|mg/dL|<130|N|||F|||20260414132000||||
-L|1|N
