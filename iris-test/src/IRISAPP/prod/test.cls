@@ -53,6 +53,7 @@ and status = ?]]></Setting>
     <Setting Target="Adapter" Name="ArchivePath"></Setting>
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/in/</Setting>
     <Setting Target="Adapter" Name="WorkPath"></Setting>
+    <Setting Target="Adapter" Name="FileSpec">*.ast</Setting>
   </Item>
   <Item Name="LIS" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.LISRoutingRule</Setting>
