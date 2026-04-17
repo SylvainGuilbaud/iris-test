@@ -19,6 +19,7 @@ XData RuleDefinition [ XMLNamespace = "http://www.intersystems.com/rule" ]
 <constraint name="source" value="de LIS ASTM E1238"></constraint>
 <when condition="1" comment="">
 <send transform="" target="vers LIS ASTM E1238"></send>
+<send transform="IRISAPP.transfo.ASTME1238" target="vers BASE PATIENT"></send>
 </when>
 </rule>
 </ruleSet>
