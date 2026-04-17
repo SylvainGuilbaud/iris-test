@@ -9,7 +9,7 @@ Property FirstName As %String(MAXLEN = 100);
 
 Property LastName As %String(MAXLEN = 100);
 
-Property DateOfBirth As %Date;
+Property DateOfBirth As %Date(FORMAT =4);
 
 Property Gender As %String(MAXLEN = 20);
 
