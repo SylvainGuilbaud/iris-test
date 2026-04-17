@@ -29,6 +29,8 @@ Property PostalCode As %String(MAXLEN = 20);
 
 Property Country As %String(MAXLEN = 100);
 
+Property CreationDate As %DateTime [InitialExpression = {$ZDATETIME($HOROLOG,3)}];
+Property LastUpdateDate As %DateTime;
 
 Storage Default
 {
@@ -77,6 +79,12 @@ Storage Default
 </Value>
 <Value name="15">
 <Value>Country</Value>
+</Value>
+<Value name="16">
+<Value>CreationDate</Value>
+</Value>
+<Value name="17">
+<Value>LastUpdateDate</Value>
 </Value>
 </Data>
 <DataLocation>^data.patientD</DataLocation>

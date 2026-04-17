@@ -31,6 +31,7 @@ Method maj(pRequest As msg.patient, Output pResponse As msg.response.sql) As %St
 			set update = update _ ", FirstName = ?"
 			set update = update _ ", DateOfBirth = ?"
 			set update = update _ ", Gender = ?"
+			set update = update _ ", LastUpdateDate = sysdate"
 			set update = update _ " where PatientId = ?"
 			set sc = ..Adapter.ExecuteUpdate(.nrows
 											,update
@@ -66,6 +67,7 @@ Method maj(pRequest As msg.patient, Output pResponse As msg.response.sql) As %St
 			set insert = insert _ "("
 			set insert = insert _ "?,?,?,?,?"
 			set insert = insert _ ")"
+			$$$TRACE("Insert request "_ insert)
 			set sc = ..Adapter.ExecuteUpdate(.nrows
 											,insert
 											, pRequest.PatientId
