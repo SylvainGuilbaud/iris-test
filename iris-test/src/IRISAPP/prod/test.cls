@@ -72,6 +72,15 @@ and status = ?]]></Setting>
     <Setting Target="Adapter" Name="DSN">iris</Setting>
     <Setting Target="Adapter" Name="JGService">%JDBC Server</Setting>
   </Item>
+  <Item Name="de LIS ASTM E1238" Category="" ClassName="HPRIM.EDI.E1238.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="DocSchemaCategory">HPRIM2.2</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">LIS</Setting>
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1238/in/</Setting>
+    <Setting Target="Adapter" Name="SemaphoreSpec">*.ok</Setting>
+  </Item>
+  <Item Name="vers LIS ASTM E1238" Category="" ClassName="HPRIM.EDI.E1238.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1238/out/</Setting>
+  </Item>
 </Production>
 }
 

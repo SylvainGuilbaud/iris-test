@@ -1,8 +1,8 @@
-ROUTINE ASTME1238 [Type=INC]
-#; ASTME1238.inc
+ROUTINE HPRIME1238 [Type=INC]
+#; HPRIME1238.inc
 #;
 #Include EnsEDI
-#Include ASTME1238Errors
+#Include HPRIME1238Errors
 
 #; ASTM E1238 special TCP control character codes 
 #define STX             $C(2)
@@ -13,17 +13,17 @@ ROUTINE ASTME1238 [Type=INC]
 #define ETB             $C(23)
 
 #define MapCtlChar(%c)  $Case(%c,$$$STX:"<STX>",$$$ETX:"<ETX>",$$$EOT:"<EOT>",$$$ENQ:"<ENQ>",$$$ACK:"<ACK>",$$$ETB:"<ETB>",$C(13):"<CR>",$C(10):"<LF>",:"<"_$A(%c)_">")
-#define MapCtlChars(%s) ##class(ASTM.EDI.E1238.Parser).mapCtlChars(%s)
+#define MapCtlChars(%s) ##class(HPRIM.EDI.E1238.Parser).mapCtlChars(%s)
  
 #; LVD array macros
-#define vaSchemaGbl       ^ASTM.E1238.Schema
-#define vaSchemaDescGbl   ^ASTM.E1238.Description
-#define vaSegmentGbl      ^ASTM.E1238.Segment
-#define vaExtentGbl       ^ASTM.EDI.E1238.DocumentD
+#define vaSchemaGbl       ^HPRIM.E1238.Schema
+#define vaSchemaDescGbl   ^HPRIM.E1238.Description
+#define vaSegmentGbl      ^HPRIM.E1238.Segment
+#define vaExtentGbl       ^HPRIM.EDI.E1238.DocumentD
 #; Note: SchemaGbl macros are defined in EnsEDISEF
  
 #ifndef LOCALMAPS
-#define vaTempInstanceGbl ^CacheTemp.ASTM.E1238
+#define vaTempInstanceGbl ^CacheTemp.HPRIM.E1238
 #endif
 #;
 #; 22 = Name MAXLEN

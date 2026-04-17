@@ -1,0 +1,332 @@
+<?xml version="1.0"?>
+
+<Category name="HPRIM2.2" description="ASTM E1238 HPRIM 2.2">
+
+<DocumentStructure name='P' definition='H~[~{~C~}~]~{~P~[~{~C~}~]~{~OBR~[~{~C~}~]~~[~{~OBX~[~{~C~}~]~[~{~M~}~]~}~]~}~}~L' description='Patient Information'/>
+<DocumentStructure name='Q' definition='H~[~{~C~}~]~Q~[~{~C~}~]~L' description='Query Patient Information'/>
+
+<SegmentStructure name='A' description='ADDENDUM'>
+    <SegmentSubStructure piece='1' description='ADDENDUM CONTINUATION POINTER' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='C' description='Comment'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='M'/>
+    <SegmentSubStructure piece='2' description='Comment Source' length='1' required='O' codetable='CommentSource'/>
+    <SegmentSubStructure piece='3' description='Comment Value' componentstruct='CVL' required='M'/>
+    <SegmentSubStructure piece='4' description='Comment Type' length='1' required='O' codetable='CommentType'/>
+</SegmentStructure>
+<SegmentStructure name='H' description='Header'>
+    <SegmentSubStructure piece='1' description='Field Separator' length='1' required='M'/>
+    <SegmentSubStructure piece='2' description='Delimiter Definition' length='5' required='M'/>
+    <SegmentSubStructure piece='3' description='Message Control ID' required='O'/>
+    <SegmentSubStructure piece='4' description='Access Password' required='O'/>
+    <SegmentSubStructure piece='5' description='Sender Name Or ID' componentstruct='CM_SN' required='O'/>
+    <SegmentSubStructure piece='6' description='Sender Street Address' required='O'/>
+    <SegmentSubStructure piece='7' description='Reserved Field' required='O'/>
+    <SegmentSubStructure piece='8' description='Sender Telephone Number' required='O'/>
+    <SegmentSubStructure piece='9' description='Characteristics Of Sender' required='O'/>
+    <SegmentSubStructure piece='10' description='Receiver ID' required='O'/>
+    <SegmentSubStructure piece='11' description='Comment Or Special Instructions' required='O'/>
+    <SegmentSubStructure piece='12' description='Processing ID' length='1' required='O' codetable='ProcessingID'/>
+    <SegmentSubStructure piece='13' description='Version Number' required='O'/>
+    <SegmentSubStructure piece='14' description='Date And Time Of Message' required='O'/>
+    <SegmentSubStructure piece='15' description='NumSIL' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='L' description='Message Terminator'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='M'/>
+    <SegmentSubStructure piece='2' description='Not Used' required='O'/>
+    <SegmentSubStructure piece='3' description='P-Segments number' length='4' required='O'/>
+    <SegmentSubStructure piece='4' description='Segments number of the message' length='10' required='O'/>
+    <SegmentSubStructure piece='5' description='Lot number' length='12' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='M' description='Reagent information'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='M'/>
+    <SegmentSubStructure piece='2' description='Not Used' required='O'/>
+    <SegmentSubStructure piece='3' description='Reagents' componentstruct='RI' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='OBR' description='Test Order'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='O'/>
+    <SegmentSubStructure piece='2' description='Specimen ID' componentstruct='S_N' required='O'/>
+    <SegmentSubStructure piece='3' description='Instrument Specimen ID' required='O'/>
+    <SegmentSubStructure piece='4' description='Universal Test ID' required='O'/>
+    <SegmentSubStructure piece='5' description='Priority' required='O'/>
+    <SegmentSubStructure piece='6' description='Requested/Ordered Date and Time' required='O'/>
+    <SegmentSubStructure piece='7' description='Specimen Collection Date and Time' componentstruct='DT_SR' required='O'/>
+    <SegmentSubStructure piece='8' description='Collection End Time' required='O'/>
+    <SegmentSubStructure piece='9' description='Collection Volume (in ml)' required='O'/>
+    <SegmentSubStructure piece='10' description='Collector ID' required='O'/>
+    <SegmentSubStructure piece='11' description='Action Code' required='O'/>
+    <SegmentSubStructure piece='12' description='Danger Code' required='O'/>
+    <SegmentSubStructure piece='13' description='Relevant Clinical Information' required='O'/>
+    <SegmentSubStructure piece='14' description='Date/Time Specimen Received' required='O'/>
+    <SegmentSubStructure piece='15' description='Specimen Descriptor (Type &amp; Source)' required='O'/>
+    <SegmentSubStructure piece='16' description='Ordering Physician' required='O'/>
+    <SegmentSubStructure piece='17' description='Physician&apos;s Telephone Number' required='O'/>
+    <SegmentSubStructure piece='18' description='User Field No.1' required='O'/>
+    <SegmentSubStructure piece='19' description='User Field No.2' required='O'/>
+    <SegmentSubStructure piece='20' description='Laboratory Field No.1' required='O'/>
+    <SegmentSubStructure piece='21' description='Laboratory Field No.2' required='O'/>
+    <SegmentSubStructure piece='22' description='Date/Time Results Reported or Last Modified' required='O'/>
+    <SegmentSubStructure piece='23' description='Instrument Charge to Computer System' required='O'/>
+    <SegmentSubStructure piece='24' description='Instrument Section ID' required='O'/>
+    <SegmentSubStructure piece='25' description='Report Types' required='O'/>
+    <SegmentSubStructure piece='26' description='Reserved Field' required='O'/>
+    <SegmentSubStructure piece='27' description='Location or Ward of Specimen Collection' required='O'/>
+    <SegmentSubStructure piece='28' description='Nosocomial Infection Flag' required='O'/>
+    <SegmentSubStructure piece='29' description='Specimen Service' required='O'/>
+    <SegmentSubStructure piece='30' description='Specimen Institution' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='OBX' description='OBSERVATION RESULT'>
+    <SegmentSubStructure piece='1' description='Set ID - Observational Simple'/>
+    <SegmentSubStructure piece='2' description='Value Type'/>
+    <SegmentSubStructure piece='3' description='Observation Identifier' componentstruct='CodeSIL'/>
+    <SegmentSubStructure piece='4' description='Observation Sub-ID'/>
+    <SegmentSubStructure piece='5' description='Observation Value' componentstruct='Value_Libelle'/>
+    <SegmentSubStructure piece='6' description='Units'/>
+    <SegmentSubStructure piece='7' description='References Range'/>
+    <SegmentSubStructure piece='8' description='Abnormal Flags'/>
+    <SegmentSubStructure piece='9' description='Probability'/>
+    <SegmentSubStructure piece='10' description='Nature of Abnormal Test'/>
+    <SegmentSubStructure piece='11' description='Observation result status'/>
+    <SegmentSubStructure piece='12' description='Effective date last observation normal values'/>
+    <SegmentSubStructure piece='13' description='User Defined Access Checks'/>
+    <SegmentSubStructure piece='14' description='Date / time of the observation'/>
+    <SegmentSubStructure piece='15' description='Producer&apos;s ID'/>
+    <SegmentSubStructure piece='16' description='Responsible Observer' componentstruct='Observer_Type'/>
+</SegmentStructure>
+<SegmentStructure name='P' description='Patient Information'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='O'/>
+    <SegmentSubStructure piece='2' description='Practice Assigned Patient ID' required='O'/>
+    <SegmentSubStructure piece='3' description='Laboratory Assigned Patient ID' required='O'/>
+    <SegmentSubStructure piece='4' description='Patient ID Number 3' required='O'/>
+    <SegmentSubStructure piece='5' description='Patient Name' componentstruct='PN' required='O'/>
+    <SegmentSubStructure piece='6' description='Mother&apos;s Maiden Name' required='O'/>
+    <SegmentSubStructure piece='7' description='Date Of Birth' required='O'/>
+    <SegmentSubStructure piece='8' description='Patient Sex' length='1' required='O'/>
+    <SegmentSubStructure piece='9' description='Patient Race - Ethnic Origin' required='O'/>
+    <SegmentSubStructure piece='10' description='Patient Address' componentstruct='AD' required='O'/>
+    <SegmentSubStructure piece='11' description='Reserved Field' required='O'/>
+    <SegmentSubStructure piece='12' description='Patient Telephone Number' required='O'/>
+    <SegmentSubStructure piece='13' description='Attending Physician ID' componentstruct='CN' required='O'/>
+    <SegmentSubStructure piece='14' description='Special Field 1' required='O'/>
+    <SegmentSubStructure piece='15' description='Special Field 2' required='O'/>
+    <SegmentSubStructure piece='16' description='Patient Height (in cm)' componentstruct='CQ' required='O'/>
+    <SegmentSubStructure piece='17' description='Patient Weight (in kg)' componentstruct='CQ' required='O'/>
+    <SegmentSubStructure piece='18' description='Patient&apos;s Known Or Suspected Diagnosis (as ICD-9 Code)' componentstruct='CE' required='O'/>
+    <SegmentSubStructure piece='19' description='Patient Medications' required='O'/>
+    <SegmentSubStructure piece='20' description='Patient&apos;s Diet' required='O'/>
+    <SegmentSubStructure piece='21' description='Practice Field 1' required='O'/>
+    <SegmentSubStructure piece='22' description='Practice Field 2' required='O'/>
+    <SegmentSubStructure piece='23' description='Admission And Discharge Dates' componentstruct='DTTM2' required='O'/>
+    <SegmentSubStructure piece='24' description='Admission Status' length='2' required='O'/>
+    <SegmentSubStructure piece='25' description='Location' required='O'/>
+    <SegmentSubStructure piece='26' description='Diagnostic Classification' componentstruct='CE' required='O'/>
+    <SegmentSubStructure piece='27' description='Religion' required='O'/>
+    <SegmentSubStructure piece='28' description='Marital Status' required='O'/>
+    <SegmentSubStructure piece='29' description='Isolation Status' required='O'/>
+    <SegmentSubStructure piece='30' description='Patient Language' required='O'/>
+    <SegmentSubStructure piece='31' description='Hospital Service' componentstruct='CN' required='O'/>
+    <SegmentSubStructure piece='32' description='Hospital Institution' componentstruct='CN' required='O'/>
+    <SegmentSubStructure piece='33' description='Dosage Category' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='Q' description='Request Information'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='O'/>
+    <SegmentSubStructure piece='2' description='Starting Range ID Number' componentstruct='CM_SR' required='O'/>
+    <SegmentSubStructure piece='3' description='Ending Range ID Number' required='O'/>
+    <SegmentSubStructure piece='4' description='Universal Test ID' required='O'/>
+    <SegmentSubStructure piece='5' description='Nature of Request Time Limits' length='1' required='O'/>
+    <SegmentSubStructure piece='6' description='Beginning Request Results Date and Time' required='O'/>
+    <SegmentSubStructure piece='7' description='Ending Request Results Date and Time' required='O'/>
+    <SegmentSubStructure piece='8' description='Requesting Physician' required='O'/>
+    <SegmentSubStructure piece='9' description='Requesting Physician Telephone Number' required='O'/>
+    <SegmentSubStructure piece='10' description='User Field No.1' required='O'/>
+    <SegmentSubStructure piece='11' description='User Field No.2' required='O'/>
+    <SegmentSubStructure piece='12' description='Request Information Status Codes' length='1' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='R' description='Result'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='O'/>
+    <SegmentSubStructure piece='2' description='Universal Test ID' required='O'/>
+    <SegmentSubStructure piece='3' description='Data or Measurement Value' required='O'/>
+    <SegmentSubStructure piece='4' description='Units' required='O'/>
+    <SegmentSubStructure piece='5' description='Reference Ranges' required='O'/>
+    <SegmentSubStructure piece='6' description='Result Abnormal Flags' required='O' codetable='AbnormalFlags'/>
+    <SegmentSubStructure piece='7' description='Nature of Abnormality Testing' required='O'/>
+    <SegmentSubStructure piece='8' description='Result Status' required='O' codetable='ResultStatus'/>
+    <SegmentSubStructure piece='9' description='Date or Change in Instrument Normative Values or Units' required='O'/>
+    <SegmentSubStructure piece='10' description='Operator Identification' required='O'/>
+    <SegmentSubStructure piece='11' description='Date/Time Test Started' required='O'/>
+    <SegmentSubStructure piece='12' description='Date/Time Test Completed' required='O'/>
+    <SegmentSubStructure piece='13' description='Instrument Identification' required='O'/>
+</SegmentStructure>
+<SegmentStructure name='S' description='Scientific'>
+    <SegmentSubStructure piece='1' description='Sequence Number' required='O'/>
+    <SegmentSubStructure piece='2' description='Analytical Method' required='O'/>
+    <SegmentSubStructure piece='3' description='Instrumentation' required='O'/>
+    <SegmentSubStructure piece='4' description='Reagents' required='O'/>
+    <SegmentSubStructure piece='5' description='Units of Measure' required='O'/>
+    <SegmentSubStructure piece='6' description='Quality Control' required='O'/>
+    <SegmentSubStructure piece='7' description='Specimen Descriptor' required='O'/>
+    <SegmentSubStructure piece='8' description='Reserved Field' required='O'/>
+    <SegmentSubStructure piece='9' description='Container' required='O'/>
+    <SegmentSubStructure piece='10' description='Specimen ID' required='O'/>
+    <SegmentSubStructure piece='11' description='Analyte' required='O'/>
+    <SegmentSubStructure piece='12' description='Result' required='O'/>
+    <SegmentSubStructure piece='13' description='Result Units' required='O'/>
+    <SegmentSubStructure piece='14' description='Collection Date and Time' required='O'/>
+    <SegmentSubStructure piece='15' description='Result Date and Time' required='O'/>
+    <SegmentSubStructure piece='16' description='Analytical Preprocessing Steps' required='O'/>
+    <SegmentSubStructure piece='17' description='Patient Diagnosis' required='O'/>
+    <SegmentSubStructure piece='18' description='Patient Birthdate' required='O'/>
+    <SegmentSubStructure piece='19' description='Patient Sex' required='O'/>
+    <SegmentSubStructure piece='20' description='Patient Race' required='O'/>
+</SegmentStructure>
+
+<ComponentStructure name='AD' description='Address'>
+    <ComponentSubStructure piece='1' description='Street Address'/>
+    <ComponentSubStructure piece='2' description='City'/>
+    <ComponentSubStructure piece='3' description='State Or Province'/>
+    <ComponentSubStructure piece='4' description='Zip Or Postal Code'/>
+    <ComponentSubStructure piece='5' description='Country'/>
+</ComponentStructure>
+<ComponentStructure name='CE' description='Diagnosis Composite'>
+    <ComponentSubStructure piece='1' description='Identifier'/>
+    <ComponentSubStructure piece='2' description='Text'/>
+    <ComponentSubStructure piece='3' description='Name Of Coding System'/>
+    <ComponentSubStructure piece='4' description='Alternate Identifier'/>
+    <ComponentSubStructure piece='5' description='Alternate Text'/>
+    <ComponentSubStructure piece='6' description='Alternate Coding System'/>
+</ComponentStructure>
+<ComponentStructure name='CM_BN' description='Block Number'>
+    <ComponentSubStructure piece='1' description='Number Of Sorted Block'/>
+    <ComponentSubStructure piece='2' description='Block Position'/>
+</ComponentStructure>
+<ComponentStructure name='CM_SB' description='Sorting Block'>
+    <ComponentSubStructure piece='1' description='Sorting Block Name'/>
+    <ComponentSubStructure piece='2' description='Rack Name'/>
+</ComponentStructure>
+<ComponentStructure name='CM_SN' description='Sender Name'>
+    <ComponentSubStructure piece='1' description='Sender Name Or ID'/>
+    <ComponentSubStructure piece='2' description='System Type'/>
+    <ComponentSubStructure piece='3' description='Software Version'/>
+</ComponentStructure>
+<ComponentStructure name='CM_SR' description='Starting Range'>
+    <ComponentSubStructure piece='1' description='Empty'/>
+    <ComponentSubStructure piece='2' description='Patient Id'/>
+    <ComponentSubStructure piece='3' description='Rack Number'/>
+    <ComponentSubStructure piece='4' description='Rack Position'/>
+    <ComponentSubStructure piece='5' description='Rack Id'/>
+    <ComponentSubStructure piece='6' description='Tube Type'/>
+    <ComponentSubStructure piece='7' description='Volume'/>
+    <ComponentSubStructure piece='8' description='Class'/>
+    <ComponentSubStructure piece='9' description='Return Code'/>
+</ComponentStructure>
+<ComponentStructure name='CN' description='Name Composite'>
+    <ComponentSubStructure piece='1' description='ID Number'/>
+    <ComponentSubStructure piece='2' description='Family Name'/>
+    <ComponentSubStructure piece='3' description='Given Name'/>
+    <ComponentSubStructure piece='4' description='Middle Initial Or Name'/>
+    <ComponentSubStructure piece='5' description='Suffix'/>
+    <ComponentSubStructure piece='6' description='Prefix'/>
+    <ComponentSubStructure piece='7' description='Degree'/>
+    <ComponentSubStructure piece='8' description='Source Table'/>
+</ComponentStructure>
+<ComponentStructure name='CQ' description='Quantity Composite'>
+    <ComponentSubStructure piece='1' description='Quantity'/>
+    <ComponentSubStructure piece='2' description='Units'/>
+</ComponentStructure>
+<ComponentStructure name='CVL' description='Comment Value and Label'>
+    <ComponentSubStructure piece='1' description='Value'/>
+    <ComponentSubStructure piece='2' description='Label'/>
+</ComponentStructure>
+<ComponentStructure name='CodeSIL' description='CodeSIL and MPLana'>
+    <ComponentSubStructure piece='1' description='CodeSIL'/>
+    <ComponentSubStructure piece='2' description='MplAna'/>
+</ComponentStructure>
+<ComponentStructure name='DTTM2' description='Admit/Discharge Date/Time'>
+    <ComponentSubStructure piece='1' description='Admission Date/Time'/>
+    <ComponentSubStructure piece='2' description='Discharge Date/Time'/>
+</ComponentStructure>
+<ComponentStructure name='DT_SR' description='Date/Time Specimen Recieved'>
+    <ComponentSubStructure piece='1' description='DateTime 1'/>
+    <ComponentSubStructure piece='2' description='DateTime 2'/>
+</ComponentStructure>
+<ComponentStructure name='Observer_Type' description='Observer information'>
+    <ComponentSubStructure piece='1' description='Observer Id'/>
+    <ComponentSubStructure piece='2' description='Observer Type'/>
+</ComponentStructure>
+<ComponentStructure name='PN' description='Patient Name'>
+    <ComponentSubStructure piece='1' description='Last Name'/>
+    <ComponentSubStructure piece='2' description='First Name'/>
+    <ComponentSubStructure piece='3' description='Middle Initial Or Name'/>
+    <ComponentSubStructure piece='4' description='Suffix'/>
+    <ComponentSubStructure piece='5' description='Title'/>
+</ComponentStructure>
+<ComponentStructure name='RI' description='ReagentNumber and ReagentLotNumber'>
+    <ComponentSubStructure piece='1' description='Number'/>
+    <ComponentSubStructure piece='2' description='LotNumber'/>
+</ComponentStructure>
+<ComponentStructure name='S_N' description='Specimen Numbers'>
+    <ComponentSubStructure piece='1' description='NumCB'/>
+    <ComponentSubStructure piece='2' description='NumSIL'/>
+</ComponentStructure>
+<ComponentStructure name='Value_Libelle' description='Result value and label (coded result)'>
+    <ComponentSubStructure piece='1' description='Value'/>
+    <ComponentSubStructure piece='2' description='Libelle'/>
+</ComponentStructure>
+
+<CodeTable name='AbnormalFlags' tabletype=''>
+   <Enumerate position='1' value='L' description='below low normal'/>
+   <Enumerate position='2' value='H' description='above high normal'/>
+   <Enumerate position='3' value='&lt;' description='below absolute low that is off low scale on instrument'/>
+   <Enumerate position='4' value='&gt;' description='above absolute high, that is off high scale on instrument'/>
+   <Enumerate position='5' value='N' description='normal'/>
+   <Enumerate position='6' value='LL' description='below panic normal'/>
+   <Enumerate position='7' value='HH' description='above panic high'/>
+   <Enumerate position='8' value='A' description='abnormal'/>
+   <Enumerate position='9' value='U' description='significant change up'/>
+   <Enumerate position='10' value='D' description='significant change down'/>
+   <Enumerate position='11' value='B' description='better, use when direction not relevant or not defined'/>
+   <Enumerate position='12' value='W' description='worse, use when direction not relevant or not defined'/>
+</CodeTable>
+<CodeTable name='CommentSource' tabletype=''>
+   <Enumerate position='1' value='P' description='practice'/>
+   <Enumerate position='2' value='L' description='computer system'/>
+   <Enumerate position='3' value='I' description='clinical instrument system'/>
+</CodeTable>
+<CodeTable name='CommentType' tabletype=''>
+   <Enumerate position='1' value='G' description='generic/free text comment'/>
+   <Enumerate position='2' value='T' description='test name comment'/>
+   <Enumerate position='3' value='P' description='positive test comment'/>
+   <Enumerate position='4' value='N' description='negative test comment'/>
+   <Enumerate position='5' value='I' description='instrument flag(s) comment'/>
+</CodeTable>
+<CodeTable name='ProcessingID' tabletype=''>
+   <Enumerate position='1' value='P' description='Production'/>
+   <Enumerate position='2' value='D' description='Debugging'/>
+   <Enumerate position='3' value='T' description='Training'/>
+   <Enumerate position='4' value='Q' description='Error ?'/>
+</CodeTable>
+<CodeTable name='ResultStatus' tabletype=''>
+   <Enumerate position='1' value='F' description='final results'/>
+   <Enumerate position='2' value='X' description='results cannot be done, request will not be honored'/>
+   <Enumerate position='3' value='I' description='in system, results pending'/>
+   <Enumerate position='4' value='R' description='this result was previously transmitted'/>
+   <Enumerate position='5' value='Q' description='this result is a response to an outstanding query'/>
+   <Enumerate position='6' value='V' description='operator verified/approved result'/>
+   <Enumerate position='7' value='Y' description='system blocked'/>
+   <Enumerate position='8' value='+' description='user blocked'/>
+   <Enumerate position='9' value='C' description='correction of previously transmitted results'/>
+   <Enumerate position='10' value='P' description='preliminary results'/>
+   <Enumerate position='11' value='S' description='partial results'/>
+   <Enumerate position='12' value='M' description='this result is a MIC level'/>
+   <Enumerate position='13' value='N' description='this result record contains necessary information to run a new order'/>
+</CodeTable>
+<CodeTable name='TerminationCode' tabletype=''>
+   <Enumerate position='1' value='' description='normal termination (default when empty)'/>
+   <Enumerate position='2' value='N' description='normal termination (default when empty)'/>
+   <Enumerate position='3' value='E' description='unknown system error'/>
+   <Enumerate position='4' value='F' description='last request for information processed'/>
+   <Enumerate position='5' value='I' description='no data found from last query'/>
+   <Enumerate position='6' value='Q' description='error in last request for information'/>
+</CodeTable>
+
+</Category>
