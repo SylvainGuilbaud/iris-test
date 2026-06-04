@@ -103,6 +103,14 @@ and status = ?]]></Setting>
     <Setting Target="Host" Name="MLLPHost">host.docker.internal</Setting>
     <Setting Target="Host" Name="MLLPPort">6661</Setting>
     <Setting Target="Host" Name="ConnectTimeout">5</Setting>
+    <Setting Target="Host" Name="FailOnMLLPError">1</Setting>
+  </Item>
+  <Item Name="de ASTM E1394 MLLP" Category="" ClassName="EnsLib.EDI.ASTM.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception ASTM E1381/E1394 en TCP" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">6661</Setting>
+    <Setting Target="Adapter" Name="AllowedIPAddresses"></Setting>
+    <Setting Target="Host" Name="DocSchemaCategory">E1394:P</Setting>
+    <Setting Target="Host" Name="ReplyMode">App</Setting>
+    <Setting Target="Host" Name="TargetConfigNames"></Setting>
   </Item>
 </Production>
 }
