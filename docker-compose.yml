@@ -18,6 +18,8 @@ services:
       - 10972:1972
       - 10773:52773
       - 29001:29001
+      - 29010:29010
+      - 6661:6661
     volumes:
       - ./iris-test/src/code:/code
       - ./iris-test/src:/src

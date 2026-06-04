@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tasks><Task>
+  <Name>Enable Async Subtask PollingZZ</Name>
+  <RunAsUser>_Ensemble</RunAsUser>
+  <EmailOutput>false</EmailOutput>
+  <Expires>true</Expires>
+  <OpenOutputFile>false</OpenOutputFile>
+  <OutputFileIsBinary>true</OutputFileIsBinary>
+  <SuspendOnError>false</SuspendOnError>
+  <SuspendTerminated>false</SuspendTerminated>
+  <Suspended>0</Suspended>
+  <Priority>0</Priority>
+  <TaskClass>HS.HC.SubTaskMgr.Task</TaskClass>
+  <IsBatch>false</IsBatch>
+  <NameSpace>HSSYS</NameSpace>
+  <TimePeriod>0</TimePeriod>
+  <TimePeriodEvery>1</TimePeriodEvery>
+  <DailyFrequency>1</DailyFrequency>
+  <DailyFrequencyTime>0</DailyFrequencyTime>
+  <DailyIncrement>10</DailyIncrement>
+  <DailyStartTime>00:00:00</DailyStartTime>
+  <DailyEndTime>00:00:00</DailyEndTime>
+  <JobGUID>ZZCE8E6ED1-32D7-11F1-9E1B-CA945891DD3A</JobGUID>
+  <StartDate>2026-04-07</StartDate>
+  <LastSchedule>67717,27600</LastSchedule>
+  <LastStarted>67717,27600</LastStarted>
+  <LastFinished>67717,27600</LastFinished>
+  <MirrorStatus>1</MirrorStatus>
+  <Type>2</Type>
+  <RescheduleOnStart>false</RescheduleOnStart>
+  <DeleteAfterRun>false</DeleteAfterRun>
+  <Description>Enable Async Subtask Polling</Description>
+</Task>
+
+<Task>
+  <Name>Mirror OAuth2 config sync taskZZ</Name>
+  <RunAsUser>_ENSEMBLE</RunAsUser>
+  <EmailOutput>false</EmailOutput>
+  <Expires>true</Expires>
+  <OpenOutputFile>false</OpenOutputFile>
+  <OutputFileIsBinary>true</OutputFileIsBinary>
+  <SuspendOnError>false</SuspendOnError>
+  <SuspendTerminated>false</SuspendTerminated>
+  <Suspended>0</Suspended>
+  <Priority>0</Priority>
+  <TaskClass>HS.HC.SystemConfig.Task.OAuthSync</TaskClass>
+  <Settings>EAFMYXN0QXVkaXRJbmRleAIE</Settings>
+  <IsBatch>false</IsBatch>
+  <NameSpace>HSSYS</NameSpace>
+  <TimePeriod>0</TimePeriod>
+  <TimePeriodEvery>1</TimePeriodEvery>
+  <DailyFrequency>1</DailyFrequency>
+  <DailyFrequencyTime>0</DailyFrequencyTime>
+  <DailyIncrement>5</DailyIncrement>
+  <DailyStartTime>00:00:00</DailyStartTime>
+  <DailyEndTime>00:00:00</DailyEndTime>
+  <JobGUID>ZZF255B2DA-32D7-11F1-9E1B-CA945891DD3A</JobGUID>
+  <StartDate>2026-04-07</StartDate>
+  <LastSchedule>67717,27900</LastSchedule>
+  <LastStarted>67717,27900</LastStarted>
+  <LastFinished>67717,27900</LastFinished>
+  <MirrorStatus>1</MirrorStatus>
+  <Type>2</Type>
+  <RescheduleOnStart>true</RescheduleOnStart>
+  <DeleteAfterRun>false</DeleteAfterRun>
+  <Description>Syncs OAuth2 configuration between mirror members.</Description>
+</Task>
+<Task>
+  <Name>FHIR Purge Expired Search Results TaskZZ</Name>
+  <RunAsUser>_Ensemble</RunAsUser>
+  <EmailOutput>false</EmailOutput>
+  <Expires>false</Expires>
+  <OpenOutputFile>false</OpenOutputFile>
+  <OutputFileIsBinary>true</OutputFileIsBinary>
+  <SuspendOnError>false</SuspendOnError>
+  <SuspendTerminated>false</SuspendTerminated>
+  <Suspended>0</Suspended>
+  <Priority>0</Priority>
+  <TaskClass>HS.FHIRServer.Util.PurgeExpiredSearchResultsTask</TaskClass>
+  <Settings>DwFNaW51dGVzVG9LZWVwAwQ8</Settings>
+  <IsBatch>false</IsBatch>
+  <NameSpace>HSSYS</NameSpace>
+  <TimePeriod>0</TimePeriod>
+  <TimePeriodEvery>1</TimePeriodEvery>
+  <DailyFrequency>1</DailyFrequency>
+  <DailyFrequencyTime>1</DailyFrequencyTime>
+  <DailyIncrement>1</DailyIncrement>
+  <DailyStartTime>00:00:00</DailyStartTime>
+  <DailyEndTime>00:00:00</DailyEndTime>
+  <JobGUID>ZZ354B823D-3A6F-11F1-8DE1-6A39B9763CA3</JobGUID>
+  <StartDate>2026-04-18</StartDate>
+  <LastSchedule>67717,25200</LastSchedule>
+  <LastStarted>67717,26057</LastStarted>
+  <LastFinished>67717,26057</LastFinished>
+  <MirrorStatus>1</MirrorStatus>
+  <Type>2</Type>
+  <RescheduleOnStart>true</RescheduleOnStart>
+  <DeleteAfterRun>false</DeleteAfterRun>
+  <Description>Periodically checks for cached FHIR Search results that have have exceeded the configured duration s</Description>
+</Task>
+</Tasks>

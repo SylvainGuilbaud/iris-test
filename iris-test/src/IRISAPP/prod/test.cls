@@ -88,6 +88,20 @@ and status = ?]]></Setting>
   <Item Name="vers LIS ASTM E1238" Category="" ClassName="HPRIM.EDI.E1238.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1238/out/</Setting>
   </Item>
+  <Item Name="de LIS ASTM E1394 - TCP" Category="" ClassName="EnsLib.EDI.ASTM.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception ASTM E1381/E1394 en TCP" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">29010</Setting>
+    <Setting Target="Adapter" Name="AllowedIPAddresses"></Setting>
+    <Setting Target="Host" Name="DocSchemaCategory">E1394</Setting>
+    <Setting Target="Host" Name="ReplyMode">App</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">Relay ASTM vers fichier+MLLP</Setting>
+  </Item>
+  <Item Name="Relay ASTM vers fichier+MLLP" Category="" ClassName="IRISAPP.operation.ASTMRelayWithAck" PoolSize="1" Enabled="true" Foreground="false" Comment="C.2 -&gt; O.12 + sortie fichier + emission MLLP + ACK applicatif" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="OutputPath">/data/ASTM-E1394/out/</Setting>
+    <Setting Target="Host" Name="SendToMLLP">1</Setting>
+    <Setting Target="Host" Name="MLLPHost">host.docker.internal</Setting>
+    <Setting Target="Host" Name="MLLPPort">6661</Setting>
+    <Setting Target="Host" Name="ConnectTimeout">5</Setting>
+  </Item>
 </Production>
 }
 
