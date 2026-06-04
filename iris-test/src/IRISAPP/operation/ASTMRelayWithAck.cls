@@ -150,7 +150,7 @@ Method BuildApplicationAck(Output pSC As %Status) As EnsLib.EDI.ASTM.Document
 	Set pSC = $$$OK
 	Set tAck = $$$NULLOREF
 	Try {
-		Set tAckText = "H|\\^&|||IRIS|||||||P|E 1394-97|"_..NowAstmTs()_$C(13)_"L|1|N"_$C(13)
+		Set tAckText = "H|\^&|||IRIS|||||||P|E 1394-97|"_..NowAstmTs()_$C(13)_"L|1|N"_$C(13)
 		Set tAck = ##class(EnsLib.EDI.ASTM.Document).ImportFromString(tAckText)
 	} Catch ex {
 		Set pSC = ex.AsStatus()
