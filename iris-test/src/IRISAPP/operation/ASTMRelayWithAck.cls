@@ -19,6 +19,7 @@ Method OnMessage(pRequest As EnsLib.EDI.ASTM.Document, Output pResponse As EnsLi
 {
 	Set tSC = $$$OK
 	Set pResponse = $$$NULLOREF
+	Do ..EnsureDocType(.pRequest)
 
 	Set tPayload = ..DocumentToString(pRequest,.tSC)
 	Quit:$$$ISERR(tSC) tSC
@@ -40,6 +41,14 @@ Method OnMessage(pRequest As EnsLib.EDI.ASTM.Document, Output pResponse As EnsLi
 
 	Set pResponse = ..BuildApplicationAck(.tSC)
 	Quit tSC
+}
+
+Method EnsureDocType(ByRef pDoc As EnsLib.EDI.ASTM.Document)
+{
+	Set tDocType = $Get(pDoc.DocType)
+	If (tDocType="")!(tDocType="E1394:") {
+		Set pDoc.DocType = "E1394:P"
+	}
 }
 
 Method DocumentToString(pRequest As EnsLib.EDI.ASTM.Document, Output pSC As %Status) As %String

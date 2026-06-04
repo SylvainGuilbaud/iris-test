@@ -6,6 +6,8 @@ XData ProductionDefinition
 <Production Name="IRISAPP.prod.test" TestingEnabled="true" LogGeneralTraceEvents="true">
   <Description></Description>
   <ActorPoolSize>2</ActorPoolSize>
+  <Setting Target="Adapter" Name="ShutdownTimeout">5</Setting>
+  <Setting Target="Adapter" Name="UpdateTimeout">4</Setting>
   <Item Name="de HL7 ADT IHE PAM FR - TCP" Category="" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
     <Setting Target="Adapter" Name="Port">29001</Setting>
@@ -91,7 +93,7 @@ and status = ?]]></Setting>
   <Item Name="de LIS ASTM E1394 - TCP" Category="" ClassName="EnsLib.EDI.ASTM.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception ASTM E1381/E1394 en TCP" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Port">29010</Setting>
     <Setting Target="Adapter" Name="AllowedIPAddresses"></Setting>
-    <Setting Target="Host" Name="DocSchemaCategory">E1394</Setting>
+    <Setting Target="Host" Name="DocSchemaCategory">E1394:P</Setting>
     <Setting Target="Host" Name="ReplyMode">App</Setting>
     <Setting Target="Host" Name="TargetConfigNames">Relay ASTM vers fichier+MLLP</Setting>
   </Item>
