@@ -62,18 +62,48 @@ def recv_until_crlf(sock: socket.socket, timeout: float = 5.0) -> bytes:
     return bytes(buf)
 
 
-def sample_astm_message() -> str:
+def sample_astm_message(profile: str = "realistic") -> str:
     ts = datetime.now().strftime("%Y%m%d%H%M%S")
-    # Includes a C segment, then an O segment so IRIS can copy C.2 to O.12.
-    lines = [
-        # Keep ASTM header field positions aligned with repository sample format.
-        f"H|\\^&|||Analyzer^SN123||||||P|E1394-97|{ts}",
-        "P|1||PAT001||DOE^JOHN",
-        "C|1|COMMENT_C2_VALUE",
-        "O|1|ORD001||^^^GLU",
-        "R|1|^^^GLU|5.4|mmol/L",
-        "L|1|N",
-    ]
+    if profile == "basic":
+        # Minimal message used for quick smoke tests.
+        lines = [
+            f"H|\\^&|||Analyzer^SN123||||||P|E1394-97|{ts}",
+            "P|1||PAT001||DOE^JOHN",
+            "C|1|COMMENT_C2_VALUE",
+            "O|1|ORD001||^^^GLU",
+            "R|1|^^^GLU|5.4|mmol/L",
+            "L|1|N",
+        ]
+    elif profile == "realistic":
+        # Closer to repository sampleE1394.P.ASTM field layout.
+        lines = [
+            f"H|\\^&|||LAB-SYSTEM-E1394^2.5^{ts}||||||P|E1394-97|{ts}",
+            "P|1|PAT001|LAB001|199001011234567|DUPONT^MARIE^CLAIRE^^Mme^|MARTIN|19850723|F|CAUCASIAN|15 RUE DE LA PAIX^PARIS^FR^75001||01.42.86.17.00",
+            "O|1|REQ001^LAB001||^^^GLU^Glucose^L|R|20240414142000|||||A|||20240414142530||||||||||||||Q|1|A|20240414143000",
+            "R|1|^^^GLU^Glucose^L|5.2|mmol/L|3.9_6.1|N||F||TECH001^MARTIN^JEAN|20240414143000|COBAS6000^1.2.3|20240414143030^20240414143100",
+            "C|1|COMMENT_C2_VALUE|Profil lipidique dans les normes.|I",
+            "O|2|REQ002^LAB001||^^^CHOL^Cholesterol Total^L|R|20240414142000|||||A|||20240414142530||||||||||||||Q|1|A|20240414143500",
+            "R|2|^^^CHOL^Cholesterol Total^L|4.8|mmol/L|<5.2|N||F||TECH001^MARTIN^JEAN|20240414143500|COBAS6000^1.2.3|20240414143530^20240414143600",
+            "L|1|N",
+        ]
+    else:
+        # Multi-patient message to stress queue/routing behavior in one transmission.
+        lines = [
+            f"H|\\^&|||LAB-SYSTEM-E1394^2.5^{ts}||||||P|E1394-97|{ts}",
+            "P|1|PAT001|LAB001|199001011234567|DUPONT^MARIE^CLAIRE^^Mme^|MARTIN|19850723|F|CAUCASIAN|15 RUE DE LA PAIX^PARIS^FR^75001||01.42.86.17.00",
+            "O|1|REQ001^LAB001||^^^GLU^Glucose^L|R|20240414142000|||||A|||20240414142530||||||||||||||Q|1|A|20240414143000",
+            "R|1|^^^GLU^Glucose^L|5.2|mmol/L|3.9_6.1|N||F||TECH001^MARTIN^JEAN|20240414143000|COBAS6000^1.2.3|20240414143030^20240414143100",
+            "C|1|COMMENT_P1|Patient 1 comment.|I",
+            "O|2|REQ002^LAB001||^^^CHOL^Cholesterol Total^L|R|20240414142000|||||A|||20240414142530||||||||||||||Q|1|A|20240414143500",
+            "R|2|^^^CHOL^Cholesterol Total^L|4.8|mmol/L|<5.2|N||F||TECH001^MARTIN^JEAN|20240414143500|COBAS6000^1.2.3|20240414143530^20240414143600",
+            "P|2|PAT002|LAB002|196211081234568|BERNARD^PIERRE^HENRI^^M.|DURAND|19621108|M|CAUCASIAN|42 AVENUE VICTOR HUGO^LYON^FR^69001||04.78.25.63.41",
+            "O|1|REQ003^LAB002||^^^CREAT^Creatinine^L|R|20240414142000|||||A|||20240414142530||||||||||||||Q|1|A|20240414145000",
+            "R|1|^^^CREAT^Creatinine^L|135|umol/L|62_115|H||F||TECH002^DURAND^SOPHIE|20240414145000|ARCHITECT^2.1.0|20240414145030^20240414145100",
+            "C|1|COMMENT_P2|Patient 2 comment.|A",
+            "O|2|REQ004^LAB002||^^^UREA^Urea^L|R|20240414142000|||||A|||20240414142530||||||||||||||Q|1|A|20240414145500",
+            "R|2|^^^UREA^Urea^L|8.2|mmol/L|2.5_7.5|H||F||TECH002^DURAND^SOPHIE|20240414145500|ARCHITECT^2.1.0|20240414145530^20240414145600",
+            "L|1|N",
+        ]
     return "\r".join(lines) + "\r"
 
 
@@ -175,10 +205,11 @@ def main() -> int:
     parser.add_argument("--port", type=int, default=29010)
     parser.add_argument("--timeout", type=float, default=5.0)
     parser.add_argument("--app-timeout", type=float, default=12.0)
+    parser.add_argument("--profile", choices=["basic", "realistic", "multi-patient"], default="realistic")
     parser.add_argument("--message-file", default="")
     args = parser.parse_args()
 
-    payload = sample_astm_message()
+    payload = sample_astm_message(args.profile)
     if args.message_file:
         with open(args.message_file, "r", encoding="ascii", errors="ignore") as f:
             txt = f.read()

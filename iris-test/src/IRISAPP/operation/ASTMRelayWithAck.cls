@@ -45,10 +45,7 @@ Method OnMessage(pRequest As EnsLib.EDI.ASTM.Document, Output pResponse As EnsLi
 
 Method EnsureDocType(ByRef pDoc As EnsLib.EDI.ASTM.Document)
 {
-	Set tDocType = $Get(pDoc.DocType)
-	If (tDocType="")!(tDocType="E1394:") {
-		Set pDoc.DocType = "E1394:P"
-	}
+	Do pDoc.PokeDocType("E1394:P")
 }
 
 Method DocumentToString(pRequest As EnsLib.EDI.ASTM.Document, Output pSC As %Status) As %String
