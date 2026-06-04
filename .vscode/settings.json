@@ -1,6 +1,6 @@
 {
     "objectscript.conn": {
-        "active": false,
+        "active": true,
         "ns": "IRISAPP",
         "docker-compose": {
             "service": "iris-test",
