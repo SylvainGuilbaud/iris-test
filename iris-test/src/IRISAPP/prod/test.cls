@@ -29,14 +29,14 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="FilePath">/data/HL7/out</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="Demo.Temperature.TemperatureProcess" Category="temp" ClassName="Demo.Temperature.TemperatureProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureProcess" Category="temp" ClassName="Demo.Temperature.TemperatureProcess" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="target">Demo.Temperature.TemperatureOperation</Setting>
     <Setting Target="Host" Name="cities">Paris,Lille,Nice,Lyon,Toulouse,Nantes,Bordeaux,Marseille,Brest,Strasbourg,Montpellier,Clermont-Ferrand,Annecy,Le Mans,Angers,Tours,Orléans,Rennes,Poitiers,Amiens,Roubaix,Metz,Pau</Setting>
   </Item>
-  <Item Name="Demo.Temperature.TemperatureOperation" Category="temp" ClassName="Demo.Temperature.TemperatureOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureOperation" Category="temp" ClassName="Demo.Temperature.TemperatureOperation" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="Demo.Temperature.TemperatureService" Category="" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureService" Category="" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="CallInterval">20</Setting>
   </Item>
   <Item Name="get commandes from MSSQL" Category="" ClassName="EnsLib.SQL.Service.GenericService" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
@@ -99,10 +99,12 @@ and status = ?]]></Setting>
   </Item>
   <Item Name="Relay ASTM vers fichier+MLLP" Category="" ClassName="IRISAPP.operation.ASTMRelayWithAck" PoolSize="1" Enabled="true" Foreground="false" Comment="C.2 -&gt; O.12 + sortie fichier + emission MLLP + ACK applicatif" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="OutputPath">/data/ASTM-E1394/out/</Setting>
-    <Setting Target="Host" Name="SendToMLLP">0</Setting>
+    <Setting Target="Host" Name="SendToMLLP">1</Setting>
     <Setting Target="Host" Name="MLLPHost">127.0.0.1</Setting>
-    <Setting Target="Host" Name="MLLPPort">6661</Setting>
+    <Setting Target="Host" Name="MLLPPort">6662</Setting>
     <Setting Target="Host" Name="ConnectTimeout">5</Setting>
+    <Setting Target="Host" Name="WaitForMLLPAck">1</Setting>
+    <Setting Target="Host" Name="MLLPAckTimeout">5</Setting>
     <Setting Target="Host" Name="FailOnMLLPError">0</Setting>
   </Item>
   <Item Name="de ASTM E1394 MLLP" Category="" ClassName="EnsLib.EDI.ASTM.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception ASTM E1381/E1394 en TCP" LogTraceEvents="true" Schedule="">

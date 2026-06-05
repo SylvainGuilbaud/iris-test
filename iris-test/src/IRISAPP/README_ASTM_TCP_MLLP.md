@@ -24,7 +24,7 @@ Ce dossier contient une mise en place de flux ASTM TCP avec:
 	 - `OutputPath`: dossier de sortie local (defaut `/data/ASTM-E1394/out/`)
 	 - `SendToMLLP`: `1` pour activer la sortie MLLP
 	 - `MLLPHost`: host du Mirth (defaut `host.docker.internal`)
-	 - `MLLPPort`: port MLLP (defaut `6661`)
+	- `MLLPPort`: port MLLP (defaut `6662`)
 	 - `FailOnMLLPError`: `0` (defaut) pour renvoyer quand meme un ACK applicatif ASTM si le MLLP echoue
 4. Activer les 2 items:
 	 - `de LIS ASTM E1394 - TCP`
@@ -33,6 +33,7 @@ Ce dossier contient une mise en place de flux ASTM TCP avec:
 ## Notes importantes
 
 - Le low-level E1381 (ENQ/ACK, STX/ETX/LRC, retries/timeouts) est gere par `EnsLib.EDI.ASTM.Service.TCPService`.
+- `IRISAPP.operation.ASTMRelayWithAck` est en `INVOCATION="InProc"` pour permettre un ACK applicatif immediat sur la meme connexion TCP.
 - La transformation implementee est simple et lineaire:
 	- memorise la derniere valeur `C.2`
 	- injecte cette valeur dans chaque `O.12` suivant
@@ -49,7 +50,7 @@ Ce dossier contient une mise en place de flux ASTM TCP avec:
 	- `de LIS ASTM E1394 - TCP`
 	- `Relay ASTM vers fichier+MLLP`
 
-3. Sur Mirth (ou un listener MLLP), demarrer un channel MLLP en ecoute sur le port configure (defaut `6661`).
+3. Sur Mirth (ou un listener MLLP), demarrer un channel MLLP en ecoute sur le port configure (defaut `6662`).
 
 4. Depuis le host, envoyer un message ASTM E1381 de test:
 
@@ -95,5 +96,45 @@ python3 test/verify_astm_c2_to_o12.py --file /Users/guilbaud/git/iris-test/data/
 	- Arreter temporairement le listener MLLP.
 	- Rejouer le script.
 	- Le message doit etre ecrit en fichier mais le traitement doit remonter une erreur de connexion MLLP cote IRIS.
+
+## Listener Python (sans Mirth)
+
+Si Mirth n'est pas disponible, utiliser le listener local:
+
+1. Demarrer le listener sur le host:
+
+```bash
+cd /Users/guilbaud/git/iris-test/test
+python3 mllp_listener.py --host 0.0.0.0 --port 6662
+```
+
+Par defaut, le listener ne renvoie pas d'ACK (mode fire-and-forget).
+
+Pour activer l'ACK:
+
+```bash
+python3 mllp_listener.py --host 0.0.0.0 --port 6662 --send-ack
+```
+
+Pour desactiver l'ACK:
+
+```bash
+python3 mllp_listener.py --host 0.0.0.0 --port 6662 --no-send-ack
+```
+
+2. Dans l'operation `Relay ASTM vers fichier+MLLP`, regler:
+
+	- `SendToMLLP=1`
+	- `MLLPHost=host.docker.internal` si le listener tourne sur le host
+	- `MLLPHost=127.0.0.1` si le listener tourne dans le conteneur `iris-test`
+	- `MLLPPort=6662`
+	- `WaitForMLLPAck=1` si le listener renvoie un ACK MLLP, sinon mettre `0` pour un envoi fire-and-forget
+
+3. Rejouer un envoi ASTM E1381.
+
+4. Verifier les payloads recus:
+
+	- Dossier de sortie listener: `/Users/guilbaud/git/iris-test/data/ASTM-E1394/mllp-in`
+	- Le listener affiche la premiere ligne recue et le fichier ecrit.
 
 

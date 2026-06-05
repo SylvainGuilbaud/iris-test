@@ -23,6 +23,7 @@ services:
     volumes:
       - ./iris-test/src/code:/code
       - ./iris-test/src:/src
+      - ./test:/test
       - ./jdbc:/jdbc
       - databases_test:/databases
       - journal_test:/journal
