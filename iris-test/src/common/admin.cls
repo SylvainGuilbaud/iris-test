@@ -1,6 +1,6 @@
 Class common.admin Extends %RegisteredObject
 {
-/// Description
+/// WARNING: This class is intended for testing purposes only. Do not use in production environments.
 ClassMethod clean() As %Status
 {
     Set sc = $$$OK
