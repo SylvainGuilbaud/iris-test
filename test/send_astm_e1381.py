@@ -156,17 +156,20 @@ def run(host: str, port: int, timeout: float, app_timeout: float, payload: str) 
             print("Expected ACK after ENQ")
             return 1
 
-        # Step 2: send frame
-        frame = build_single_frame(payload, frame_no="1")
-        sock.sendall(frame)
-        b = recv_byte(sock, timeout)
-        print(f"Received after data frame: {decode_ctl(b)}")
-        if b == NAK:
-            print("Server returned NAK, retransmission needed")
-            return 2
-        if b != ACK:
-            print("Expected ACK after data frame")
-            return 3
+        # Step 2: send one frame per ASTM record (E1381 standard practice)
+        records = [r for r in payload.split("\r") if r]
+        for idx, record in enumerate(records):
+            frame_no = str((idx % 7) + 1)
+            frame = build_single_frame(record + "\r", frame_no)
+            sock.sendall(frame)
+            b = recv_byte(sock, timeout)
+            print(f"Received after frame {frame_no} ({record[:30]}): {decode_ctl(b)}")
+            if b == NAK:
+                print(f"Server returned NAK on frame {frame_no}, retransmission needed")
+                return 2
+            if b != ACK:
+                print(f"Expected ACK after frame {frame_no}")
+                return 3
 
         # Step 3: EOT to close client send phase
         sock.sendall(bytes([EOT]))
