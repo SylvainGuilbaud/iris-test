@@ -1,0 +1,57 @@
+ROUTINE IRISAPP.transfo.ASTME1394.1 [Type=INT,Generated]
+ ;IRISAPP.transfo.ASTME1394.1
+ ;Generated for class IRISAPP.transfo.ASTME1394.  Do NOT edit. 04/17/2026 03:08:31PM
+ ;;74596B54;IRISAPP.transfo.ASTME1394
+ ;
+GetSourceDocType() methodimpl {
+ Quit "E1394:P" }
+GetSourceType() methodimpl {
+ Quit "EnsLib.EDI.ASTM.Document" }
+GetTargetType(pCreate) methodimpl {
+ Set pCreate="new"
+ Quit "msg.list.patient" }
+Transform(source,target,aux="") [ process,context ] methodimpl {
+	Set (tSC,tSCTrans,tSCGet)=1,$ZE=""
+	Try {
+		Set:""=source.DocType tBlankSrc=1, source.DocType="E1394:P"
+		Set target = ##class(msg.list.patient).%New()
+		If '$IsObject(target) Set tSC=%objlasterror Quit
+		Do:$S($D(%Ensemble("DoTrace")):%Ensemble("DoTrace"),1:##class(Ens.Util.Trace).DoTrace()) ##class(Ens.Util.Trace).WriteTrace("xform",$classname(),"Transform","transform from source "_source_$S(source.%Extends("%Persistent"):"/"_source.%Id(),1:"")_" to target "_target_$S(target.%Extends("%Persistent"):"/"_target.%Id(),1:"")_"")
+		Set k1="",tSC=1
+		For {
+			Set tSC1=1, k1=source.GetNextIndex("Pgrp()",k1,.tSC1)
+			If ('tSC1) { Set:('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node"))) tSCTrans=$select(+tSCTrans:tSC1,1:$$AppendStatus^%occSystem(tSCTrans,tSC1))  Set tSC1=1 }
+			Quit:k1=""
+			Do ..instantiateProps(target,"target.patients.(k1).PatientId",(k1))
+			Try { Set target.patients.GetAt(k1).PatientId=source.GetValueAt("Pgrp("_(k1)_").P:PracticeAssignedPatientId",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL) }
+			Catch ex { If (..#IGNOREMISSINGSOURCE&&($$GetOneStatusText^%apiOBJ(ex.AsStatus())["<INVALID OREF>")) { Set tSC = 1 } Else { Set tSC=ex.AsStatus() } }
+			If ('tSC) Quit
+			Do ..instantiateProps(target,"target.patients.(k1).LastName",(k1))
+			Try { Set target.patients.GetAt(k1).LastName=source.GetValueAt("Pgrp("_(k1)_").P:PatientName.LastName",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL) }
+			Catch ex { If (..#IGNOREMISSINGSOURCE&&($$GetOneStatusText^%apiOBJ(ex.AsStatus())["<INVALID OREF>")) { Set tSC = 1 } Else { Set tSC=ex.AsStatus() } }
+			If ('tSC) Quit
+			Do ..instantiateProps(target,"target.patients.(k1).FirstName",(k1))
+			Try { Set target.patients.GetAt(k1).FirstName=source.GetValueAt("Pgrp("_(k1)_").P:PatientName.FirstName",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL) }
+			Catch ex { If (..#IGNOREMISSINGSOURCE&&($$GetOneStatusText^%apiOBJ(ex.AsStatus())["<INVALID OREF>")) { Set tSC = 1 } Else { Set tSC=ex.AsStatus() } }
+			If ('tSC) Quit
+			Do ..instantiateProps(target,"target.patients.(k1).DateOfBirth",(k1))
+			Try { Set target.patients.GetAt(k1).DateOfBirth=$zdh(source.GetValueAt("Pgrp("_(k1)_").P:DateOfBirth",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL),8) }
+			Catch ex { If (..#IGNOREMISSINGSOURCE&&($$GetOneStatusText^%apiOBJ(ex.AsStatus())["<INVALID OREF>")) { Set tSC = 1 } Else { Set tSC=ex.AsStatus() } }
+			If ('tSC) Quit
+			Do ..instantiateProps(target,"target.patients.(k1).Gender",(k1))
+			Try { Set target.patients.GetAt(k1).Gender=source.GetValueAt("Pgrp("_(k1)_").P:PatientSex",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL) }
+			Catch ex { If (..#IGNOREMISSINGSOURCE&&($$GetOneStatusText^%apiOBJ(ex.AsStatus())["<INVALID OREF>")) { Set tSC = 1 } Else { Set tSC=ex.AsStatus() } }
+			If ('tSC) Quit
+		}
+		If ('tSC) Quit
+	} Catch thrownErr {
+		If $ZE="" {
+			Set tSC=thrownErr.AsStatus()
+			Do ##class(Ens.Util.Log).LogStatus($classname(),"Transform",tSC)
+		} Else {
+			Set tSC=##class(Ens.Util.Error).EnsSystemError($classname(),"Transform")
+		}
+	}
+	If ('tSCTrans) Do ##class(Ens.Util.Log).LogStatus($classname(),"Transform",tSCTrans)  Quit:(''tSC) tSCTrans
+	Set:$G(tBlankSrc) source.DocType=""
+	Quit tSC }

@@ -95,7 +95,7 @@ and status = ?]]></Setting>
     <Setting Target="Adapter" Name="AllowedIPAddresses"></Setting>
     <Setting Target="Host" Name="DocSchemaCategory">E1394:P</Setting>
     <Setting Target="Host" Name="ReplyMode">App</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">ASTM</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">Relay ASTM vers fichier+MLLP</Setting>
   </Item>
   <Item Name="Relay ASTM vers fichier+MLLP" Category="" ClassName="IRISAPP.operation.ASTMRelayWithAck" PoolSize="1" Enabled="true" Foreground="false" Comment="C.2 -&gt; O.12 + sortie fichier + emission MLLP + ACK applicatif" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="OutputPath">/data/ASTM-E1394/out/</Setting>
@@ -114,10 +114,17 @@ and status = ?]]></Setting>
     <Setting Target="Host" Name="ReplyMode">App</Setting>
     <Setting Target="Host" Name="TargetConfigNames"></Setting>
   </Item>
-  <Item Name="ASTM" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="ASTM" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.ASTMRoutingRule</Setting>
   </Item>
   <Item Name="Ens.ProductionMonitorService" Category="" ClassName="Ens.ProductionMonitorService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
+  <Item Name="de LIS ASTM E1394 - FICHIER" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/in/</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">vers ASTM E1394 - FICHIER,ASTM</Setting>
+  </Item>
+  <Item Name="vers ASTM E1394 - FICHIER" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
   </Item>
 </Production>
 }

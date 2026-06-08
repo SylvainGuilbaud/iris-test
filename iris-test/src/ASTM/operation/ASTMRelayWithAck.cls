@@ -1,4 +1,4 @@
-Class IRISAPP.operation.ASTMRelayWithAck Extends Ens.BusinessOperation
+Class ASTM.operation.ASTMRelayWithAck Extends Ens.BusinessOperation
 {
 
 Parameter INVOCATION = "InProc";
@@ -41,9 +41,8 @@ Method OnMessage(pRequest As EnsLib.EDI.ASTM.Document, Output pResponse As EnsLi
 		Quit tSC
 	}
 
-	Set tTransformed = ..ApplyCommentC2ToOrderO12(tPayload,.tC2)
 
-	Set tSC = ..WriteToFile(tTransformed,.tFilename)
+	Set tSC = ..WriteToFile(tPayload,.tFilename)
 	If $$$ISERR(tSC) {
 		$$$LOGERROR("ASTM relay failed at WriteToFile, Session="_tMsgId_", Status="_$$$StatusDisplayString(tSC))
 		Quit tSC
@@ -51,7 +50,7 @@ Method OnMessage(pRequest As EnsLib.EDI.ASTM.Document, Output pResponse As EnsLi
 
 	If ..SendToMLLP {
 		$$$LOGINFO("ASTM relay MLLP send: Session="_tMsgId_", Target="_..MLLPHost_":"_..MLLPPort)
-		Set tMLLPSC = ..SendAsMLLP(tTransformed)
+		Set tMLLPSC = ..SendAsMLLP(tPayload)
 		If $$$ISERR(tMLLPSC) {
 			Set tMLLPState = "failed"
 			If ..FailOnMLLPError {

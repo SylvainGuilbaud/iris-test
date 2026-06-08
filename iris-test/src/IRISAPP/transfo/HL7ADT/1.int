@@ -1,0 +1,69 @@
+ROUTINE IRISAPP.transfo.HL7ADT.1 [Type=INT,Generated]
+ ;IRISAPP.transfo.HL7ADT.1
+ ;Generated for class IRISAPP.transfo.HL7ADT.  Do NOT edit. 04/17/2026 03:08:31PM
+ ;;304F7949;IRISAPP.transfo.HL7ADT
+ ;
+GetSourceDocType() methodimpl {
+ Quit "HL7v25IHE:ADT_AXX" }
+GetSourceType() methodimpl {
+ Quit "EnsLib.HL7.Message" }
+GetTargetDocType() methodimpl {
+ Quit "nonIHE:ADT_XXX" }
+GetTargetType(pCreate) methodimpl {
+ Set pCreate="new"
+ Quit "EnsLib.HL7.Message" }
+Transform(source,target,aux="") [ process,context ] methodimpl {
+	Set (tSC,tSCTrans,tSCGet)=1,tSchemaIsLocked=0,$ZE=""
+	Try {
+		Set:""=source.DocType tBlankSrc=1, source.DocType="HL7v25IHE:ADT_AXX"
+		Set target = ##class(EnsLib.HL7.Message).%New()
+		If '$IsObject(target) Set tSC=%objlasterror Quit
+		Do:$S($D(%Ensemble("DoTrace")):%Ensemble("DoTrace"),1:##class(Ens.Util.Trace).DoTrace()) ##class(Ens.Util.Trace).WriteTrace("xform",$classname(),"Transform","transform from source "_source_$S(source.%Extends("%Persistent"):"/"_source.%Id(),1:"")_" to target "_target_$S(target.%Extends("%Persistent"):"/"_target.%Id(),1:"")_"")
+		Do target.PokeDocType("nonIHE:ADT_XXX")
+		Set target.Separators = source.Separators ; make sure multi-field assigns work properly by default
+		If $S($D(%Ensemble("Config","LockHL7Schemas"),tLock)#2:tLock,1:$G(^Ens.Config("LockHL7Schemas"),1)) {
+			LOCK +^EnsHL7.Schema#"S":$zu(115,4)
+			Set tSchemaIsLocked = $TEST
+			If 'tSchemaIsLocked {
+				If '+$G(%Ensemble("LockHL7Schemas","Failed")) {
+					Set %Ensemble("LockHL7Schemas","Failed")=1
+					Do ##class(Ens.Util.Log).LogWarning($classname(),"Transform",$$FormatMsg^%occMessages("Ensemble","HL7SchemaLocked",$Job,$zu(115,4)))
+				}
+			} Else {
+				Kill %Ensemble("LockHL7Schemas","Failed")
+			}
+		}
+		Do:source.SchemaUpdatedSinceLastBuild() source.BuildMap(,1,1)
+		Set tSC1=target.CopyValues(source,"MSH","MSH","set","",..#TREATEMPTYREPEATINGFIELDASNULL,..#IGNOREMISSINGSOURCE,..#GENERATEEMPTYSEGMENTS)
+		If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+		Try { Set tSC1=target.SetValueAt("A01","MSH:MessageType.triggerevent","set","")   } Catch ex { Set tSC1 = ex.AsStatus() }
+		If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+		Try { Set tSC1=target.SetValueAt("2.03","MSH:VersionID","set","")   } Catch ex { Set tSC1 = ex.AsStatus() }
+		If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+		Set tSC1=target.CopyValues(source,"EVN","EVN","set","",..#TREATEMPTYREPEATINGFIELDASNULL,..#IGNOREMISSINGSOURCE,..#GENERATEEMPTYSEGMENTS)
+		If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+		Set tSC1=target.CopyValues(source,"PID","PID","set","",..#TREATEMPTYREPEATINGFIELDASNULL,..#IGNOREMISSINGSOURCE,..#GENERATEEMPTYSEGMENTS)
+		If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+		If (source.GetValueAt("PID:AdministrativeSex",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL)="F") {
+			If $D(tSCGet) && ('tSCGet) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSCGet)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSCGet)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSCGet)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSCGet:tSCTrans,1:$$AppendStatus^%occSystem(tSCGet,tSCTrans)) }  Set tSCGet = 1 }
+			Try { Set tSC1=target.SetValueAt("Commentaire associé à la patiente "_source.GetValueAt("PID:PatientName().GivenName",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL)_" "_source.GetValueAt("PID:PatientName().FamilyName.Surname",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL),"NTE:Comment("_(1)_")","set","")  If ('tSCGet) { Set tSC1=$select(+tSC1:tSCGet,1:$$AppendStatus^%occSystem(tSC1,tSCGet))  Set tSCGet=1 } } Catch ex { Set tSC1 = ex.AsStatus() }
+			If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+		} Else {
+			If $D(tSCGet) && ('tSCGet) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSCGet)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSCGet)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSCGet)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSCGet:tSCTrans,1:$$AppendStatus^%occSystem(tSCGet,tSCTrans)) }  Set tSCGet = 1 }
+			Try { Set tSC1=target.SetValueAt("Commentaire associé au patient "_source.GetValueAt("PID:PatientName().GivenName",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL)_" "_source.GetValueAt("PID:PatientName().FamilyName.Surname",,.tSCGet,..#TREATEMPTYREPEATINGFIELDASNULL),"NTE:Comment("_(1)_")","set","")  If ('tSCGet) { Set tSC1=$select(+tSC1:tSCGet,1:$$AppendStatus^%occSystem(tSC1,tSCGet))  Set tSCGet=1 } } Catch ex { Set tSC1 = ex.AsStatus() }
+			If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+		}
+		Set tSC1=target.CopyValues(source,"PV1","PV1","set","",..#TREATEMPTYREPEATINGFIELDASNULL,..#IGNOREMISSINGSOURCE,..#GENERATEEMPTYSEGMENTS)
+		If $D(tSC1) && ('tSC1) {  If ('..#IGNOREMISSINGSOURCE||(($$GetOneStatusText^%apiOBJ(tSC1)'["No segment found")&&($$GetOneStatusText^%apiOBJ(tSC1)'["is not an element, instead this node")&&($$GetOneStatusText^%apiOBJ(tSC1)'["<INVALID OREF>"))) { Set tSCTrans=$select(+tSC1:tSCTrans,1:$$AppendStatus^%occSystem(tSC1,tSCTrans)) }  Set tSC1 = 1 }
+	} Catch thrownErr {
+		If $ZE="" {
+			Set tSC=thrownErr.AsStatus()
+			Do ##class(Ens.Util.Log).LogStatus($classname(),"Transform",tSC)
+		} Else {
+			Set tSC=##class(Ens.Util.Error).EnsSystemError($classname(),"Transform")
+		}
+	}
+	LOCK:tSchemaIsLocked -^EnsHL7.Schema#"S"
+	If ('tSCTrans) Do ##class(Ens.Util.Log).LogStatus($classname(),"Transform",tSCTrans)  Quit:(''tSC) tSCTrans
+	Set:$G(tBlankSrc) source.DocType=""
+	Quit tSC }
