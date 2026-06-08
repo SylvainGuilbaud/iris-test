@@ -121,7 +121,7 @@ and status = ?]]></Setting>
   </Item>
   <Item Name="de LIS ASTM E1394 - FICHIER" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/in/</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">vers ASTM E1394 - FICHIER,ASTM</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">ASTM</Setting>
   </Item>
   <Item Name="vers ASTM E1394 - FICHIER" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
