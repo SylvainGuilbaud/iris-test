@@ -114,7 +114,7 @@ and status = ?]]></Setting>
     <Setting Target="Host" Name="ReplyMode">App</Setting>
     <Setting Target="Host" Name="TargetConfigNames"></Setting>
   </Item>
-  <Item Name="ASTM" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="ASTM" Category="" ClassName="EnsLib.MsgRouter.VDocRoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.ASTMRoutingRule</Setting>
   </Item>
   <Item Name="Ens.ProductionMonitorService" Category="" ClassName="Ens.ProductionMonitorService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
