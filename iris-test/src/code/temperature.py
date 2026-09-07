@@ -64,7 +64,7 @@ class CallIntervalAdapter(InboundAdapter):
 # =========================
 class TemperatureService(BusinessService):
     ADAPTER = IRISParameter("Demo.Temperature.CallIntervalAdapter")
-    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="FochDemo.Temperature.TemperatureProcess"  )
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="Demo.Temperature.TemperatureProcess"  )
     LogTraceEvents = IRISProperty(datatype="bool", settings="LogTraceEvents", default=1, description="Whether to log trace events for incoming messages")
     def OnProcessInput(self, input):
         req = TickRequest(input)
@@ -78,7 +78,7 @@ class TemperatureService(BusinessService):
 # Business Process
 # =========================
 class TemperatureProcess(BusinessProcess):
-    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="FochDemo.Temperature.TemperatureOperation")
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="Demo.Temperature.TemperatureOperation")
     cities = IRISProperty(settings="Cities")  # ex: "Paris,Lyon,Marseille"
 
     def OnRequest(self, input):
