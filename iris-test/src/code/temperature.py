@@ -3,6 +3,7 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+import calcul
 
 PYPROD_PATH = "/usr/irissys/mgr/python"
 if PYPROD_PATH not in sys.path:
@@ -54,7 +55,7 @@ class CallIntervalAdapter(InboundAdapter):
         IRISLog.Info("Interval: " + str(self.CallInterval))
         interval = float(self.CallInterval) if self.CallInterval else 5.0
         time.sleep(interval)
-        self.business_host_process_input("tick")
+        self.business_host_process_input("HELLO ASMODÉE")
         return Status.OK()
 
 
@@ -63,7 +64,7 @@ class CallIntervalAdapter(InboundAdapter):
 # =========================
 class TemperatureService(BusinessService):
     ADAPTER = IRISParameter("Demo.Temperature.CallIntervalAdapter")
-    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="Demo.Temperature.TemperatureProcess"  )
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="FochDemo.Temperature.TemperatureProcess"  )
     LogTraceEvents = IRISProperty(datatype="bool", settings="LogTraceEvents", default=1, description="Whether to log trace events for incoming messages")
     def OnProcessInput(self, input):
         req = TickRequest(input)
@@ -77,7 +78,7 @@ class TemperatureService(BusinessService):
 # Business Process
 # =========================
 class TemperatureProcess(BusinessProcess):
-    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="Demo.Temperature.TemperatureOperation")
+    target = IRISProperty(settings="Target:selector?context={Ens.ContextSearch/ProductionItems?targets=1&productionName=@productionId}", default="FochDemo.Temperature.TemperatureOperation")
     cities = IRISProperty(settings="Cities")  # ex: "Paris,Lyon,Marseille"
 
     def OnRequest(self, input):
@@ -118,6 +119,9 @@ class TemperatureOperation(BusinessOperation):
             }
 
         return status, CityTemperatureResponse([city_temp])
+    def get_days(self):
+        IRISLog.Info("Calculating days" + str(calcul.Calcul().calcul(1,2)))
+        return calcul.Calcul().calcul(1,2)
 
     def _get_temperature_c(self, city: str):
         # 1) Géocodage

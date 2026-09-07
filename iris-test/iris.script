@@ -18,7 +18,7 @@
     do ##class(HPRIM.EDI.E1238.SchemaXML).Import("/home/irisowner/dev/src/HPRIM/HPRIM2.2.AST")
     do ##class(HPRIM.EDI.E1238.SchemaXML).Import("/home/irisowner/dev/src/HPRIM/HPRIM2.2Add.AST")
 
-    do ##class("Ens.Director").SetAutoStart("IRISAPP.prod.test", 0)
+    do ##class(Ens.Director).SetAutoStart("IRISAPP.prod.test", 0)
     do ##class(EnsLib.SQL.InboundAdapter).SetPersistentValue("get commandes from MSSQL","montant",200)
     do ##class(EnsLib.SQL.InboundAdapter).SetPersistentValue("get commandes from MSSQL","status","Completed")
 

@@ -1,7 +1,7 @@
 ROUTINE IRISAPP.prod.test.1 [Type=INT,Generated]
  ;IRISAPP.prod.test.1
- ;Generated for class IRISAPP.prod.test.  Do NOT edit. 06/05/2026 05:43:46PM
- ;;48636479;IRISAPP.prod.test
+ ;Generated for class IRISAPP.prod.test.  Do NOT edit. 09/04/2026 11:34:06AM
+ ;;5A6E6C70;IRISAPP.prod.test
  ;
 GetSettingRow(pSettingName="",pSourceClass="") methodimpl {
 	Set tRow = ""

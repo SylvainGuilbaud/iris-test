@@ -29,28 +29,15 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="FilePath">/data/HL7/out</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="Demo.Temperature.TemperatureProcess" Category="temp" ClassName="Demo.Temperature.TemperatureProcess" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureProcess" Category="temp" ClassName="Demo.Temperature.TemperatureProcess" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="target">Demo.Temperature.TemperatureOperation</Setting>
     <Setting Target="Host" Name="cities">Paris,Lille,Nice,Lyon,Toulouse,Nantes,Bordeaux,Marseille,Brest,Strasbourg,Montpellier,Clermont-Ferrand,Annecy,Le Mans,Angers,Tours,Orléans,Rennes,Poitiers,Amiens,Roubaix,Metz,Pau,Grenoble,Blois,Brest,La Baule</Setting>
   </Item>
-  <Item Name="Demo.Temperature.TemperatureOperation" Category="temp" ClassName="Demo.Temperature.TemperatureOperation" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureOperation" Category="temp" ClassName="Demo.Temperature.TemperatureOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="Demo.Temperature.TemperatureService" Category="" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
+  <Item Name="Demo.Temperature.TemperatureService" Category="" ClassName="Demo.Temperature.TemperatureService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="CallInterval">3600</Setting>
-  </Item>
-  <Item Name="get commandes from MSSQL" Category="" ClassName="EnsLib.SQL.Service.GenericService" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
-    <Setting Target="Adapter" Name="DSN">mssql</Setting>
-    <Setting Target="Adapter" Name="JGService">%JDBC Server</Setting>
-    <Setting Target="Adapter" Name="Query"><![CDATA[select id,customer_id,order_date,total_amount,status from dbo.commande
-where total_amount > ?
-and status = ?]]></Setting>
-    <Setting Target="Host" Name="ArchiveIO">1</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">commandes</Setting>
-    <Setting Target="Adapter" Name="Parameters"><![CDATA[&montant,&status]]></Setting>
-  </Item>
-  <Item Name="commandes" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.commandesRoutingRule</Setting>
   </Item>
   <Item Name="de LIS ASTM E1394" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="TargetConfigNames">LIS</Setting>
@@ -126,9 +113,36 @@ and status = ?]]></Setting>
   <Item Name="vers ASTM E1394 - FICHIER" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
   </Item>
-  <Item Name="de Philippe ASTM TEST" Category="" ClassName="EnsLib.EDI.ASTM.Service.FileService" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
-    <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/in/philippe</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">ASTM</Setting>
+  <Item Name="de GAM ADT^A28 - TCP" Category="GAM-LAB" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception ADT (ex: A28) depuis GAM en TCP/MLLP. AckMode=App: GAM recoit un ACK applicatif (AA/AE) apres traitement LAB; le rejet AR du LAB est journalise/alerte par l&apos;operation (OnReplyDocument), non restitue verbatim (limite standard)" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">29020</Setting>
+    <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
+    <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">routeur Lab</Setting>
+    <Setting Target="Host" Name="AckMode">App</Setting>
+    <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
+    <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="routeur Lab" Category="GAM-LAB" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="Routage GAM -&gt; LAB" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.LabRoutingRule</Setting>
+    <Setting Target="Host" Name="RuleLogging">a</Setting>
+  </Item>
+  <Item Name="vers Lab HL7 - TCP" Category="GAM-LAB" ClassName="IRISAPP.operation.LabHL7Operation" PoolSize="1" Enabled="true" Foreground="false" Comment="Emission ADT vers le LAB. AR/CR: fail sans retry infini, ACK original restitue a GAM (cf. ReplyCodeActions)" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="IPAddress">127.0.0.1</Setting>
+    <Setting Target="Adapter" Name="Port">6663</Setting>
+    <Setting Target="Adapter" Name="StayConnected">30</Setting>
+    <Setting Target="Adapter" Name="ConnectTimeout">5</Setting>
+    <Setting Target="Adapter" Name="ResponseTimeout">15</Setting>
+    <Setting Target="Adapter" Name="GetReply">1</Setting>
+    <Setting Target="Host" Name="NoFailWhileDisconnected">1</Setting>
+    <Setting Target="Host" Name="ReplyCodeActions">:?R=C,:?E=F,:~=F,:?A=C,:*=F,:I?=W,:T?=C</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="Lab simulateur (AR) - TCP" Category="GAM-LAB" ClassName="IRISAPP.service.LabSimulator" PoolSize="1" Enabled="true" Foreground="false" Comment="Simulateur LAB: renvoie un ACK negatif AR (ACK^A28^ACK) pour tester le flux de bout en bout" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">6663</Setting>
+    <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
+    <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
+    <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
   </Item>
 </Production>
 }
