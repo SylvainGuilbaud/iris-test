@@ -144,6 +144,22 @@ XData ProductionDefinition
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
   </Item>
+  <Item Name="de prescription ORM - TCP" Category="PRESCRIPTION-ROBOT" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception des ordres de preparation ORM^O01 en TCP/MLLP" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">29030</Setting>
+    <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
+    <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ORM_O01</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">routeur robot</Setting>
+    <Setting Target="Host" Name="AckMode">App</Setting>
+    <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
+    <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
+  </Item>
+  <Item Name="routeur robot" Category="PRESCRIPTION-ROBOT" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="Routage des ordres vers le robot de preparation" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.RobotRoutingRule</Setting>
+    <Setting Target="Host" Name="RuleLogging">a</Setting>
+  </Item>
+  <Item Name="robot de preparation" Category="PRESCRIPTION-ROBOT" ClassName="IRISAPP.operation.RobotOrderOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="Robot demo: AA si RXE-2 contient une dose, AE sinon" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
 </Production>
 }
 

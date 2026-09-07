@@ -3,11 +3,13 @@
 <Category name="HL7v25IHE" base="2.5">
 
 <MessageType name='ADT_AXX' structure='ADT_AXX'/>
+<MessageType name='ORM_O01' structure='ORM_O01'/>
 <MessageType name='QBP_ZV1' structure='QBP_ZV1' returntype='RSP_ZV2'/>
 <MessageType name='RSP_ZV2' structure='RSP_ZV2'/>
 <MessageType name='SIU_SXX' structure='SIU_SXX'/>
 
 <MessageStructure name='ADT_AXX' definition='base:MSH~[~base:EVN~]~base:PID~[~base:PD1~]~[~base:MRG~]~[~{~base:ROL~}~]~[~{~base:NK1~}~]~[~base:PV1~]~[~base:PV2~]~[~ZBE~]~[~ZFA~]~[~ZFP~]~[~ZFV~]~[~ZFM~]~[~ZFD~]~[~{~ZFS~}~]~[~base:OBX~]~[~{~base:IN1~[~base:IN2~]~[~{~base:IN3~}~]~[~{~base:ROL~}~]~}~]~[~base:ACC~]' description='ADT message'/>
+<MessageStructure name='ORM_O01' definition='base:MSH~base:PID~base:ORC~base:RXE' description='Pharmacy preparation order'/>
 <MessageStructure name='QBP_ZV1' definition='base:MSH~[~{~base:SFT~}~]~QPD~base:RCP~[~base:DSC~]'/>
 <MessageStructure name='RSP_ZV2' definition='base:MSH~[~{~base:SFT~}~]~base:MSA~[~base:ERR~]~base:QAK~QPD~[~{~base:PID~[~base:PD1~]~[~{~base:NK1~}~]~[~{~base:PV1~}~]~[~base:QRI~]~}~]~[~base:DSC~]'/>
 <MessageStructure name='SIU_SXX' definition='base:MSH~base:SCH~[~{~base:TQ1~}~]~[~{~base:NTE~}~]~base:PID~[~base:PD1~]~[~base:PV1~]~[~base:PV2~]~[~{~base:OBX~}~]~[~{~base:DG1~}~]~{~base:RGS~[~{~base:AIS~[~{~base:NTE~}~]~}~]~[~{~base:AIG~[~{~base:NTE~}~]~}~]~[~{~base:AIL~[~{~base:NTE~}~]~}~]~[~{~base:AIP~[~{~base:NTE~}~]~}~]~}'/>
