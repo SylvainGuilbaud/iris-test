@@ -8,3 +8,4 @@ databases
 **/.venv
 **/__pycache__
 **/*.bak
+private
