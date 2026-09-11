@@ -55,7 +55,7 @@ class CallIntervalAdapter(InboundAdapter):
         IRISLog.Info("Interval: " + str(self.CallInterval))
         interval = float(self.CallInterval) if self.CallInterval else 5.0
         time.sleep(interval)
-        self.business_host_process_input("HELLO ASMODÉE")
+        self.business_host_process_input("Tick")
         return Status.OK()
 
 
