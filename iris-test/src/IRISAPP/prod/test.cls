@@ -144,6 +144,60 @@ XData ProductionDefinition
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
   </Item>
+  <Item Name="case 1 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 1: normal client disconnect should not be treated as fatal service error" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">29101</Setting>
+    <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
+    <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">case 1 router</Setting>
+    <Setting Target="Host" Name="AckMode">App</Setting>
+    <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
+    <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="case 1 router" Category="CASE-ISSUES" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="Routage du cas 1" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.Case1RoutingRule</Setting>
+    <Setting Target="Host" Name="RuleLogging">a</Setting>
+  </Item>
+  <Item Name="case 1 operation" Category="CASE-ISSUES" ClassName="IRISAPP.operation.CaseIssueOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="Cas 1: client disconnect handled informationally" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="CaseName">case 1</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="case 2 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 2: downstream AR should be relayed unchanged; do not synthesize CE" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">29102</Setting>
+    <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
+    <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">case 2 router</Setting>
+    <Setting Target="Host" Name="AckMode">App</Setting>
+    <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
+    <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="case 2 router" Category="CASE-ISSUES" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="Routage du cas 2" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.Case2RoutingRule</Setting>
+    <Setting Target="Host" Name="RuleLogging">a</Setting>
+  </Item>
+  <Item Name="case 2 operation" Category="CASE-ISSUES" ClassName="IRISAPP.operation.CaseIssueOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="Cas 2: original downstream AR is preserved and logged as a business failure" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="CaseName">case 2</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="case 3 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 3: ACK^A28^ACK with MSH-9.3 populated must be accepted" LogTraceEvents="true" Schedule="">
+    <Setting Target="Adapter" Name="Port">29103</Setting>
+    <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
+    <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">case 3 router</Setting>
+    <Setting Target="Host" Name="AckMode">App</Setting>
+    <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
+    <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="case 3 router" Category="CASE-ISSUES" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="Routage du cas 3" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.Case3RoutingRule</Setting>
+    <Setting Target="Host" Name="RuleLogging">a</Setting>
+  </Item>
+  <Item Name="case 3 operation" Category="CASE-ISSUES" ClassName="IRISAPP.operation.CaseIssueOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="Cas 3: valid ACK^A28^ACK reply with MSH-9.3 accepted" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="CaseName">case 3</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
   <Item Name="de prescription ORM - TCP" Category="PRESCRIPTION-ROBOT" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception des ordres de preparation ORM^O01 en TCP/MLLP" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Port">29030</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
