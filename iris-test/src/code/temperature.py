@@ -52,11 +52,28 @@ class CallIntervalAdapter(InboundAdapter):
     CallInterval = IRISProperty(datatype="num", settings="CallInterval", default=30, description="Interval between calls in seconds")
 
     def OnTask(self):
-        IRISLog.Info("Interval: " + str(self.CallInterval))
-        interval = float(self.CallInterval) if self.CallInterval else 5.0
-        time.sleep(interval)
-        self.business_host_process_input("Tick")
-        return Status.OK()
+        status = Status.OK()
+        try:
+            IRISLog.Info("Interval: " + str(self.CallInterval))
+            interval = float(self.CallInterval) if self.CallInterval else 5.0
+            now = time.monotonic()
+            if getattr(self, "_next_call_at", None) is None or getattr(self, "_scheduled_interval", None) != interval:
+                self._next_call_at = now + interval
+                self._scheduled_interval = interval
+
+            remaining = self._next_call_at - now
+            if remaining > 0:
+                time.sleep(min(remaining, 1.0))
+                return status
+
+            self._next_call_at += interval
+            if self._next_call_at <= now:
+                self._next_call_at = now + interval
+            status = self.business_host_process_input("Tick")
+            IRISLog.Info("status: " + str(status))
+        except Exception as e:
+            status, _ = log_error_and_return_status("ERROR in CustomInAdapter OnTask : "+str(e))
+        return status
 
 
 # =========================
@@ -68,7 +85,13 @@ class TemperatureService(BusinessService):
     LogTraceEvents = IRISProperty(datatype="bool", settings="LogTraceEvents", default=1, description="Whether to log trace events for incoming messages")
     def OnProcessInput(self, input):
         req = TickRequest(input)
-        status, response = self.SendRequestSync(self.target, req)
+        result = self.SendRequestSync(self.target, req)
+        if isinstance(result, (tuple, list)):
+            status = result[0]
+            response = result[1] if len(result) > 1 else None
+        else:
+            status = result
+            response = None
         if hasattr(response, "content"):
             IRISLog.Info(response.content)
         return status
@@ -89,7 +112,13 @@ class TemperatureProcess(BusinessProcess):
         results = []
         for city in city_list:
             req = CityTemperatureRequest(city)
-            status, response = self.SendRequestSync(self.target, req)
+            result = self.SendRequestSync(self.target, req)
+            if isinstance(result, (tuple, list)):
+                status = result[0]
+                response = result[1] if len(result) > 1 else None
+            else:
+                status = result
+                response = None
             if hasattr(response, "cities") and response.cities:
                 results.extend(response.cities)
 
