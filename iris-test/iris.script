@@ -72,7 +72,7 @@
     set SQLGateway.Name = "postgres"
     set SQLGateway.isJDBC = 1
     set SQLGateway.driver = "org.postgresql.Driver"
-    set SQLGateway.URL = "jdbc:postgresql://host.docker.internal:52004/postgres"
+    set SQLGateway.URL = "jdbc:postgresql://host.docker.internal:52005/postgres"
     set SQLGateway.classpath = "/jdbc/postgresql-42.6.0.jar"
     set SQLGateway.Usr = "postgres"
     set SQLGateway.pwd = "postgres"
