@@ -123,6 +123,46 @@ python3 test/send_robot_order.py --scenario failing
 
 Le script affiche l'ACK MLLP reçu et le code `MSA-1`. Le scénario nominal retourne `AA`. Le scénario sans segment RXE retourne `AE` ; le scénario sans dose est journalisé comme rejet métier dans l'opération `robot de préparation`. Le détail est consultable dans le Visual Trace et dans les logs de production.
 
+### 3. Trois flux de cas
+
+La production contient également trois flux techniques. Chaque service reçoit un message HL7 `ADT^A28` en MLLP :
+
+```text
+Cas 1 : case 1 service - TCP (port 29101) -> case 1 router -> case 1 operation
+Cas 2 : case 2 service - TCP (port 29102) -> case 2 router -> case 2 operation
+Cas 3 : case 3 service - TCP (port 29103) -> case 3 router -> case 3 operation
+```
+
+Lancer un test direct :
+
+```bash
+python3 test/case_1.py
+python3 test/case_2.py
+python3 test/case_3.py
+```
+
+Le cas 1 simule une déconnexion du client immédiatement après l'envoi, puis envoie plusieurs messages de suivi sur de nouvelles connexions. Le cas 2 vérifie la réponse de rejet en aval. Le cas 3 vérifie l'acceptation de la forme de réponse `ACK^A28^ACK`. Tous les ACK générés doivent avoir le `DocType=2.5:ACK` d'IRIS dans le Visual Trace.
+
+Lancer les scénarios de stabilité avec horodatage :
+
+```bash
+./test/run_case_1_scenarios.sh
+./test/run_case_2_scenarios.sh
+./test/run_case_3_scenarios.sh
+```
+
+Chaque script exécute un scénario court, moyen et étendu avec 3, 5 et 10 messages. Les résultats sont affichés dans le terminal et enregistrés dans `test/logs/`, dans des fichiers nommés `case_1_YYYYMMDD_HHMMSS.log`, `case_2_YYYYMMDD_HHMMSS.log` et `case_3_YYYYMMDD_HHMMSS.log`.
+
+Vérifier le résultat dans les logs :
+
+```bash
+grep -E 'RESULT|SUMMARY|FINAL' test/logs/case_1_*.log
+grep -E 'RESULT|SUMMARY|FINAL' test/logs/case_2_*.log
+grep -E 'RESULT|SUMMARY|FINAL' test/logs/case_3_*.log
+```
+
+Pour chaque cas, vérifier également **Interoperability -> View -> Message Viewer -> Visual Trace** dans IRIS. Confirmer que le message passe par le service, le routeur et l'opération attendus, puis contrôler le `DocType`, le `MSH-9` et le `MSA-1` de la réponse. Les erreurs de production sont consultables dans l'Event Log, en filtrant sur `case 1 service - TCP`, `case 2 service - TCP` ou `case 3 service - TCP`.
+
 ## Liens utiles
 
 - [IRIS Drivers](https://intersystems-community.github.io/iris-driver-distribution/)

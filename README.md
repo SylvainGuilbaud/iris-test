@@ -125,6 +125,46 @@ python3 test/send_robot_order.py --scenario failing
 
 The script displays the received MLLP ACK and its `MSA-1` code. The nominal scenario returns `AA`. The missing-RXE scenario returns `AE`; the missing-dose scenario is logged as a business rejection by the `robot de préparation` operation. Details are available in the Visual Trace and production logs.
 
+### 3. Three case flows
+
+The production also contains three technical case flows. Each service accepts an HL7 `ADT^A28` message over MLLP:
+
+```text
+Case 1: case 1 service - TCP (port 29101) -> case 1 router -> case 1 operation
+Case 2: case 2 service - TCP (port 29102) -> case 2 router -> case 2 operation
+Case 3: case 3 service - TCP (port 29103) -> case 3 router -> case 3 operation
+```
+
+Run one direct test:
+
+```bash
+python3 test/case_1.py
+python3 test/case_2.py
+python3 test/case_3.py
+```
+
+Case 1 simulates one client disconnect immediately after sending a message, then sends follow-up messages on new connections. Case 2 checks the downstream rejection response. Case 3 checks acceptance of the `ACK^A28^ACK` response shape. All generated ACK messages should have IRIS `DocType=2.5:ACK` in Visual Trace.
+
+Run the timestamped stability scenarios:
+
+```bash
+./test/run_case_1_scenarios.sh
+./test/run_case_2_scenarios.sh
+./test/run_case_3_scenarios.sh
+```
+
+Each runner executes short, medium, and extended scenarios with 3, 5, and 10 messages. Results are printed to the terminal and saved under `test/logs/` as files named `case_1_YYYYMMDD_HHMMSS.log`, `case_2_YYYYMMDD_HHMMSS.log`, and `case_3_YYYYMMDD_HHMMSS.log`.
+
+Check the result in a log:
+
+```bash
+grep -E 'RESULT|SUMMARY|FINAL' test/logs/case_1_*.log
+grep -E 'RESULT|SUMMARY|FINAL' test/logs/case_2_*.log
+grep -E 'RESULT|SUMMARY|FINAL' test/logs/case_3_*.log
+```
+
+For each case, also check IRIS **Interoperability -> View -> Message Viewer -> Visual Trace**. Confirm the route uses the expected service, router, and operation, and inspect the response `DocType`, `MSH-9`, and `MSA-1`. Production errors can be reviewed in the Event Log, filtered by `case 1 service - TCP`, `case 2 service - TCP`, or `case 3 service - TCP`.
+
 ## Useful links
 
 - [IRIS Drivers](https://intersystems-community.github.io/iris-driver-distribution/)
