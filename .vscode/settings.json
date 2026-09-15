@@ -8,6 +8,7 @@
         }
     },
     "objectscript.export": {
-        "folder": "iris-test/src"
+        "folder": "iris-test/src",
+        "generated": false
     }
 }

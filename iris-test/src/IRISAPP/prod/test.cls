@@ -56,7 +56,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="BadMessageHandler">BadMessageHandler</Setting>
     <Setting Target="Host" Name="RuleLogging">a</Setting>
   </Item>
-  <Item Name="Ens.Alert" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="Ens.Alert" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.AlertRule</Setting>
   </Item>
   <Item Name="vers LIS ASTM E1394" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
@@ -222,6 +222,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="DefCharEncoding">latin-1</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
+    <Setting Target="Host" Name="MessageSchemaCategory">2.3</Setting>
   </Item>
   <Item Name="PatientsIn_2Op_HL7ADT_MLLP_DGLabOld" Category="" ClassName="EnsLib.HL7.Operation.TCPOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="V01.01" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="DefCharEncoding">cp1252</Setting>
