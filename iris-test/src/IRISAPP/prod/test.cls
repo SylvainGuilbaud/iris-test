@@ -235,6 +235,8 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="ConnectTimeout">10</Setting>
     <Setting Target="Host" Name="AlertRetryGracePeriod">300</Setting>
   </Item>
+  <Item Name="ALERTES" Category="" ClassName="EnsLib.EMail.AlertOperation" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  </Item>
 </Production>
 }
 
