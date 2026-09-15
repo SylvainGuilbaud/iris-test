@@ -232,6 +232,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="AlertOnError">1</Setting>
     <Setting Target="Host" Name="RetryInterval">60</Setting>
     <Setting Target="Adapter" Name="ConnectTimeout">10</Setting>
+    <Setting Target="Host" Name="AlertRetryGracePeriod">300</Setting>
   </Item>
 </Production>
 }
