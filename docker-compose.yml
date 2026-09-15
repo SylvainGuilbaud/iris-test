@@ -25,6 +25,8 @@ services:
       - 29102:29102
       - 29103:29103
       - 6661:6661
+      - 8010:8010
+      - 8011:8011
     volumes:
       - ./iris-test/src/code:/code
       - ./iris-test/src:/src

@@ -153,6 +153,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
+    <Setting Target="Host" Name="AlertOnError">1</Setting>
   </Item>
   <Item Name="case 1 router" Category="CASE-ISSUES" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="Routage du cas 1" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.Case1RoutingRule</Setting>
@@ -171,6 +172,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
+    <Setting Target="Host" Name="AlertOnError">1</Setting>
   </Item>
   <Item Name="case 2 router" Category="CASE-ISSUES" ClassName="EnsLib.HL7.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="Routage du cas 2" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.Case2RoutingRule</Setting>
@@ -212,6 +214,20 @@ XData ProductionDefinition
     <Setting Target="Host" Name="RuleLogging">a</Setting>
   </Item>
   <Item Name="robot de preparation" Category="PRESCRIPTION-ROBOT" ClassName="IRISAPP.operation.RobotOrderOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="Robot demo: AA si RXE-2 contient une dose, AE sinon" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="PatientsIn_1Svc_HL7ADT_MLLP_PASOld" Category="" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="V01.01" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="TargetConfigNames">PatientsIn_2Op_HL7ADT_MLLP_DGLabOld</Setting>
+    <Setting Target="Adapter" Name="Port">8010</Setting>
+    <Setting Target="Host" Name="DefCharEncoding">latin-1</Setting>
+    <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
+    <Setting Target="Host" Name="ArchiveIO">1</Setting>
+  </Item>
+  <Item Name="PatientsIn_2Op_HL7ADT_MLLP_DGLabOld" Category="" ClassName="EnsLib.HL7.Operation.TCPOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="V01.01" LogTraceEvents="true" Schedule="">
+    <Setting Target="Host" Name="DefCharEncoding">cp1252</Setting>
+    <Setting Target="Adapter" Name="IPAddress">localhost</Setting>
+    <Setting Target="Adapter" Name="Port">8011</Setting>
+    <Setting Target="Host" Name="NoFailWhileDisconnected">1</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
 </Production>
