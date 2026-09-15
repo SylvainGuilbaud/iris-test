@@ -229,6 +229,9 @@ XData ProductionDefinition
     <Setting Target="Adapter" Name="Port">8011</Setting>
     <Setting Target="Host" Name="NoFailWhileDisconnected">1</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
+    <Setting Target="Host" Name="AlertOnError">1</Setting>
+    <Setting Target="Host" Name="RetryInterval">60</Setting>
+    <Setting Target="Adapter" Name="ConnectTimeout">10</Setting>
   </Item>
 </Production>
 }
