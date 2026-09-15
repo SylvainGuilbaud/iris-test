@@ -11,5 +11,5 @@
         "folder": "iris-test/src",
         "generated": false
     },
-    "objectscript.compileFlags": "cu"
+    "objectscript.compileFlags": "ck"
 }
