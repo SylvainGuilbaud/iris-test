@@ -1,0 +1,114 @@
+[2026-09-15 19:53:04] Case 1 scenario test started
+[2026-09-15 19:53:04] Log file: /Users/guilbaud/git/iris-test/test/logs/case_1_20260915_195304.log
+[2026-09-15 19:53:04] START short stability: one disconnect followed by 3 follow-up messages
+[2026-09-15 19:53:04] Connecting to localhost:29101 ...
+[2026-09-15 19:53:04] [case 1] client disconnected intentionally after sending N
+[2026-09-15 19:53:04] 
+[2026-09-15 19:53:04] --- follow-up message 1/3 ---
+[2026-09-15 19:53:04] ACK received:
+[2026-09-15 19:53:04] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195304-01|P|2.5
+[2026-09-15 19:53:05] MSA|AA|case-1-follow-up-195304-01
+[2026-09-15 19:53:05] 
+[2026-09-15 19:53:05] --- follow-up message 2/3 ---
+[2026-09-15 19:53:05] ACK received:
+[2026-09-15 19:53:05] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195304-02|P|2.5
+[2026-09-15 19:53:05] MSA|AA|case-1-follow-up-195304-02
+[2026-09-15 19:53:05] 
+[2026-09-15 19:53:05] --- follow-up message 3/3 ---
+[2026-09-15 19:53:05] ACK received:
+[2026-09-15 19:53:05] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195304-03|P|2.5
+[2026-09-15 19:53:05] MSA|AA|case-1-follow-up-195304-03
+[2026-09-15 19:53:05] 
+[2026-09-15 19:53:05] Result: disconnect simulated; 3/3 follow-up messages received ACKs.
+[2026-09-15 19:53:05] RESULT PASS short stability
+[2026-09-15 19:53:05] START medium stability: one disconnect followed by 5 follow-up messages
+[2026-09-15 19:53:06] Connecting to localhost:29101 ...
+[2026-09-15 19:53:06] [case 1] client disconnected intentionally after sending N
+[2026-09-15 19:53:06] 
+[2026-09-15 19:53:06] --- follow-up message 1/5 ---
+[2026-09-15 19:53:06] No ACK yet; retrying follow-up connection (2/5) ...
+[2026-09-15 19:53:06] ACK received:
+[2026-09-15 19:53:06] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195305-01|P|2.5
+[2026-09-15 19:53:06] MSA|AA|case-1-follow-up-195305-01
+[2026-09-15 19:53:06] 
+[2026-09-15 19:53:06] --- follow-up message 2/5 ---
+[2026-09-15 19:53:06] ACK received:
+[2026-09-15 19:53:06] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195306-02|P|2.5
+[2026-09-15 19:53:06] MSA|AA|case-1-follow-up-195306-02
+[2026-09-15 19:53:06] 
+[2026-09-15 19:53:06] --- follow-up message 3/5 ---
+[2026-09-15 19:53:06] ACK received:
+[2026-09-15 19:53:06] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195306-03|P|2.5
+[2026-09-15 19:53:06] MSA|AA|case-1-follow-up-195306-03
+[2026-09-15 19:53:06] 
+[2026-09-15 19:53:06] --- follow-up message 4/5 ---
+[2026-09-15 19:53:06] ACK received:
+[2026-09-15 19:53:06] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195306-04|P|2.5
+[2026-09-15 19:53:06] MSA|AA|case-1-follow-up-195306-04
+[2026-09-15 19:53:06] 
+[2026-09-15 19:53:06] --- follow-up message 5/5 ---
+[2026-09-15 19:53:06] ACK received:
+[2026-09-15 19:53:06] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195306-05|P|2.5
+[2026-09-15 19:53:06] MSA|AA|case-1-follow-up-195306-05
+[2026-09-15 19:53:06] 
+[2026-09-15 19:53:06] Result: disconnect simulated; 5/5 follow-up messages received ACKs.
+[2026-09-15 19:53:06] RESULT PASS medium stability
+[2026-09-15 19:53:06] START extended stability: one disconnect followed by 10 follow-up messages
+[2026-09-15 19:53:08] Connecting to localhost:29101 ...
+[2026-09-15 19:53:08] [case 1] client disconnected intentionally after sending N
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:08] --- follow-up message 1/10 ---
+[2026-09-15 19:53:08] No ACK yet; retrying follow-up connection (2/5) ...
+[2026-09-15 19:53:08] ACK received:
+[2026-09-15 19:53:08] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195307-01|P|2.5
+[2026-09-15 19:53:08] MSA|AA|case-1-follow-up-195307-01
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:08] --- follow-up message 2/10 ---
+[2026-09-15 19:53:08] ACK received:
+[2026-09-15 19:53:08] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-02|P|2.5
+[2026-09-15 19:53:08] MSA|AA|case-1-follow-up-195308-02
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:08] --- follow-up message 3/10 ---
+[2026-09-15 19:53:08] ACK received:
+[2026-09-15 19:53:08] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-03|P|2.5
+[2026-09-15 19:53:08] MSA|AA|case-1-follow-up-195308-03
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:08] --- follow-up message 4/10 ---
+[2026-09-15 19:53:08] ACK received:
+[2026-09-15 19:53:08] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-04|P|2.5
+[2026-09-15 19:53:08] MSA|AA|case-1-follow-up-195308-04
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:08] --- follow-up message 5/10 ---
+[2026-09-15 19:53:08] ACK received:
+[2026-09-15 19:53:08] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-05|P|2.5
+[2026-09-15 19:53:08] MSA|AA|case-1-follow-up-195308-05
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:08] --- follow-up message 6/10 ---
+[2026-09-15 19:53:08] ACK received:
+[2026-09-15 19:53:08] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-06|P|2.5
+[2026-09-15 19:53:08] MSA|AA|case-1-follow-up-195308-06
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:08] --- follow-up message 7/10 ---
+[2026-09-15 19:53:08] ACK received:
+[2026-09-15 19:53:08] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-07|P|2.5
+[2026-09-15 19:53:08] MSA|AA|case-1-follow-up-195308-07
+[2026-09-15 19:53:08] 
+[2026-09-15 19:53:09] --- follow-up message 8/10 ---
+[2026-09-15 19:53:09] ACK received:
+[2026-09-15 19:53:09] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-08|P|2.5
+[2026-09-15 19:53:09] MSA|AA|case-1-follow-up-195308-08
+[2026-09-15 19:53:09] 
+[2026-09-15 19:53:09] --- follow-up message 9/10 ---
+[2026-09-15 19:53:09] ACK received:
+[2026-09-15 19:53:09] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-09|P|2.5
+[2026-09-15 19:53:09] MSA|AA|case-1-follow-up-195308-09
+[2026-09-15 19:53:09] 
+[2026-09-15 19:53:09] --- follow-up message 10/10 ---
+[2026-09-15 19:53:09] ACK received:
+[2026-09-15 19:53:09] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151953||ACK^A28|case-1-follow-up-195308-10|P|2.5
+[2026-09-15 19:53:09] MSA|AA|case-1-follow-up-195308-10
+[2026-09-15 19:53:09] 
+[2026-09-15 19:53:09] Result: disconnect simulated; 10/10 follow-up messages received ACKs.
+[2026-09-15 19:53:09] RESULT PASS extended stability
+[2026-09-15 19:53:09] SUMMARY passed=3 failed=0
+[2026-09-15 19:53:09] FINAL PASS Case 1 remained usable across all scenarios
