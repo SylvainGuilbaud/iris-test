@@ -10,5 +10,6 @@
     "objectscript.export": {
         "folder": "iris-test/src",
         "generated": false
-    }
+    },
+    "objectscript.compileFlags": "cu"
 }
