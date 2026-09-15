@@ -1,95 +1,30 @@
-# Objet : comportement de l'opération DGLab en cas d'indisponibilité de la cible
+# Gestion des erreurs de l'opération DGLab
 
-Bonjour,
+L'opération `PatientsIn_2Op_HL7ADT_MLLP_DGLabOld` transmet les messages reçus par le service HL7 du port `8010` vers la cible TCP `localhost:8011`.
 
-Voici un résumé du comportement de l'opération `PatientsIn_2Op_HL7ADT_MLLP_DGLabOld` lorsque la cible TCP située sur `localhost:8011` se déconnecte ou devient indisponible.
-
-## Fonctionnement de l'opération
-
-Le flux est le suivant :
-
-```text
-Service HL7 entrant sur le port 8010
-        -> file de l'opération
-        -> connexion TCP vers localhost:8011
-        -> envoi du message HL7/MLLP
-```
+## Cycle d'erreur TCP
 
 Lorsque la cible est disponible, IRIS ouvre la connexion et transmet le message.
 
-Lorsque la connexion existante est perdue, IRIS journalise normalement :
+Lorsque la connexion existante est perdue, IRIS journalise généralement :
 
 ```text
 Warning: Lost TCP connection to localhost:8011
 Info: Disconnecting from localhost:8011
 ```
 
-L'opération conserve ensuite son fonctionnement et tente de se reconnecter.
-
-Si une nouvelle tentative de connexion n'aboutit pas avant l'expiration de `ConnectTimeout`, IRIS génère :
+L'opération tente ensuite de se reconnecter. Si la cible n'accepte aucune connexion pendant `ConnectTimeout`, IRIS génère :
 
 ```text
 ERROR <Ens>ErrOutConnectExpired:
 TCP Connect timeout period (...) expired for localhost:8011
 ```
 
-Cette erreur signifie que la tentative de reconnexion a échoué. Elle ne signifie pas nécessairement que le message est perdu : l'opération continue normalement son mécanisme de retry et la livraison dépend de la disponibilité ultérieure de la cible.
+Cette erreur concerne la tentative de reconnexion. L'opération reste active et applique son mécanisme de retry ; le message pourra être transmis lorsque la cible redeviendra disponible.
 
-## Rôle des paramètres
-
-### `ConnectTimeout`
-
-Durée maximale d'une tentative de connexion TCP.
+## Paramètres concernés
 
 ```xml
-<Setting Target="Adapter" Name="ConnectTimeout">10</Setting>
-```
-
-Une valeur élevée réduit la fréquence des erreurs visibles, mais une tentative peut rester bloquée plus longtemps.
-
-### `RetryInterval`
-
-Intervalle entre deux tentatives de livraison.
-
-```xml
-<Setting Target="Host" Name="RetryInterval">60</Setting>
-```
-
-Une valeur de 60 secondes permet de retenter régulièrement sans générer des tentatives trop rapprochées.
-
-### `NoFailWhileDisconnected`
-
-```xml
-<Setting Target="Host" Name="NoFailWhileDisconnected">1</Setting>
-```
-
-Ce paramètre aide IRIS à tolérer la perte d'une connexion déjà établie et à poursuivre les retries. Il ne transforme toutefois pas tous les échecs de nouvelle connexion `ErrOutConnectExpired` en warnings.
-
-### `AlertOnError`
-
-```xml
-<Setting Target="Host" Name="AlertOnError">1</Setting>
-```
-
-Ce paramètre contrôle la génération d'une alerte séparée. La valeur `0` supprime l'alerte, mais ne supprime pas l'erreur technique du journal.
-
-### `AlertRetryGracePeriod`
-
-Pour éviter une alerte immédiate lors d'une indisponibilité courte, on peut définir une période de grâce :
-
-```xml
-<Setting Target="Host" Name="AlertRetryGracePeriod">300</Setting>
-```
-
-Dans cet exemple, l'alerte n'est générée qu'après environ cinq minutes d'échec persistant. Les erreurs techniques individuelles peuvent néanmoins rester visibles dans le journal.
-
-## Recommandation
-
-Pour une cible externe dont la disponibilité n'est pas garantie, la configuration recommandée est :
-
-```xml
-<Setting Target="Adapter" Name="IPAddress">localhost</Setting>
-<Setting Target="Adapter" Name="Port">8011</Setting>
 <Setting Target="Adapter" Name="ConnectTimeout">10</Setting>
 <Setting Target="Host" Name="RetryInterval">60</Setting>
 <Setting Target="Host" Name="NoFailWhileDisconnected">1</Setting>
@@ -97,29 +32,32 @@ Pour une cible externe dont la disponibilité n'est pas garantie, la configurati
 <Setting Target="Host" Name="AlertRetryGracePeriod">300</Setting>
 ```
 
-Cette configuration permet de :
+- `ConnectTimeout` définit la durée maximale d'une tentative de connexion.
+- `RetryInterval` définit l'intervalle entre les tentatives de livraison.
+- `NoFailWhileDisconnected` aide à tolérer la perte d'une connexion existante ; il ne transforme pas tous les échecs de reconnexion en warnings.
+- `AlertOnError` contrôle la création d'une alerte séparée. À `0`, l'erreur technique reste néanmoins dans le journal.
+- `AlertRetryGracePeriod` retarde l'alerte lorsqu'une erreur se répète pendant une période donnée.
 
-- conserver l'opération activée en permanence ;
-- conserver les messages en attente de livraison ;
-- retenter la connexion toutes les 60 secondes ;
-- attendre jusqu'à 10 secondes pour chaque tentative ;
-- éviter les alertes immédiates en cas d'indisponibilité temporaire ;
-- déclencher une alerte uniquement si l'indisponibilité persiste.
+## Gestion par `Ens.Alert`
 
-## Règle `Ens.Alert`
+`Ens.Alert` reçoit les alertes générées par les composants de la production et les traite avec une règle de routage. Il ne supprime pas l'erreur technique déjà écrite dans le journal et ne modifie pas le mécanisme de retry.
 
-Il n'est pas recommandé de supprimer ou de modifier la règle de routage `Ens.Alert` pour résoudre ce problème. Cette règle peut être utilisée par d'autres composants de la production. Sa suppression ne change pas la cause de `ErrOutConnectExpired` et pourrait empêcher d'autres alertes importantes.
+Une règle peut filtrer uniquement les alertes de cette opération :
 
-`AlertOnError=0` peut être utilisé si l'on souhaite supprimer les alertes pour cette opération, mais les erreurs de connexion continueront d'apparaître dans le journal.
+```text
+SourceConfigName = PatientsIn_2Op_HL7ADT_MLLP_DGLabOld
+AlertText contient ErrOutConnectExpired
+Action = DELETE
+```
 
-## Point d'attention pour les tests
+Cette action supprime uniquement l'alerte correspondante. Les autres alertes continuent d'être traitées par `Ens.Alert`.
 
-Si le test démarre un listener temporaire sur le port `8011` puis l'arrête, l'opération de production continuera logiquement à tenter de se reconnecter. Les erreurs `ErrOutConnectExpired` après l'arrêt du listener sont donc attendues.
+Le contexte de la règle doit être `Ens.AlertRequest`, car les propriétés `SourceConfigName` et `AlertText` appartiennent au message d'alerte. Utiliser le contexte `EnsLib.MsgRouter.RoutingEngine` provoque une erreur `PROPERTY DOES NOT EXIST` sur `AlertText`.
 
-Pour un test sans erreurs de reconnexion, il faut soit :
+## À retenir
 
-- laisser le listener disponible pendant toute la durée de vie de l'opération ;
-- utiliser un proxy ou un listener permanent sur le port `8011` ;
-- accepter que les erreurs reflètent l'indisponibilité réelle de la cible.
-
-Cordialement,
+- Une perte de connexion produit d'abord un warning.
+- Un échec de reconnexion après `ConnectTimeout` produit une erreur `ErrOutConnectExpired`.
+- `AlertOnError=0` masque l'alerte, mais pas l'erreur du journal.
+- Une règle `Ens.Alert` ciblée peut supprimer uniquement les alertes de reconnexion de cette opération.
+- La cible doit rester disponible ou être remplacée par un listener/proxy permanent si l'opération reste activée en permanence.
