@@ -1,0 +1,100 @@
+[2026-09-15 19:46:34] Case 3 scenario test started
+[2026-09-15 19:46:34] Log file: /Users/guilbaud/git/iris-test/test/logs/case_3_20260915_194634.log
+[2026-09-15 19:46:34] START short acceptance: 3 messages
+[2026-09-15 19:46:34] 
+[2026-09-15 19:46:34] --- case 3 / send 1 / controlId=case-3-194634-01 ---
+[2026-09-15 19:46:34] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-01|P|2.5
+[2026-09-15 19:46:34] MSA|AE|case-3-194634-01
+[2026-09-15 19:46:34] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:34] 
+[2026-09-15 19:46:34] --- case 3 / send 2 / controlId=case-3-194634-02 ---
+[2026-09-15 19:46:34] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-02|P|2.5
+[2026-09-15 19:46:34] MSA|AE|case-3-194634-02
+[2026-09-15 19:46:34] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:34] 
+[2026-09-15 19:46:34] --- case 3 / send 3 / controlId=case-3-194634-03 ---
+[2026-09-15 19:46:34] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-03|P|2.5
+[2026-09-15 19:46:34] MSA|AE|case-3-194634-03
+[2026-09-15 19:46:34] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:34] RESULT PASS short acceptance
+[2026-09-15 19:46:34] START medium acceptance: 5 messages
+[2026-09-15 19:46:34] 
+[2026-09-15 19:46:34] --- case 3 / send 1 / controlId=case-3-194634-01 ---
+[2026-09-15 19:46:34] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-01|P|2.5
+[2026-09-15 19:46:34] MSA|AE|case-3-194634-01
+[2026-09-15 19:46:34] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:34] 
+[2026-09-15 19:46:34] --- case 3 / send 2 / controlId=case-3-194634-02 ---
+[2026-09-15 19:46:34] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-02|P|2.5
+[2026-09-15 19:46:34] MSA|AE|case-3-194634-02
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 3 / controlId=case-3-194634-03 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-03|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194634-03
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 4 / controlId=case-3-194634-04 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-04|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194634-04
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 5 / controlId=case-3-194634-05 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194634-05|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194634-05
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] RESULT PASS medium acceptance
+[2026-09-15 19:46:35] START extended acceptance: 10 messages
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 1 / controlId=case-3-194635-01 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-01|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194635-01
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 2 / controlId=case-3-194635-02 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-02|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194635-02
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 3 / controlId=case-3-194635-03 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-03|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194635-03
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 4 / controlId=case-3-194635-04 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-04|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194635-04
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 5 / controlId=case-3-194635-05 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-05|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194635-05
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 6 / controlId=case-3-194635-06 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-06|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194635-06
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 7 / controlId=case-3-194635-07 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-07|P|2.5
+[2026-09-15 19:46:35] MSA|AE|case-3-194635-07
+[2026-09-15 19:46:35] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:35] 
+[2026-09-15 19:46:35] --- case 3 / send 8 / controlId=case-3-194635-08 ---
+[2026-09-15 19:46:35] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-08|P|2.5
+[2026-09-15 19:46:36] MSA|AE|case-3-194635-08
+[2026-09-15 19:46:36] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:36] 
+[2026-09-15 19:46:36] --- case 3 / send 9 / controlId=case-3-194635-09 ---
+[2026-09-15 19:46:36] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-09|P|2.5
+[2026-09-15 19:46:36] MSA|AE|case-3-194635-09
+[2026-09-15 19:46:36] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:36] 
+[2026-09-15 19:46:36] --- case 3 / send 10 / controlId=case-3-194635-10 ---
+[2026-09-15 19:46:36] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151946||ACK^A28|case-3-194635-10|P|2.5
+[2026-09-15 19:46:36] MSA|AE|case-3-194635-10
+[2026-09-15 19:46:36] Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.
+[2026-09-15 19:46:36] RESULT PASS extended acceptance
+[2026-09-15 19:46:36] SUMMARY passed=3 failed=0
+[2026-09-15 19:46:36] FINAL PASS Case 3 completed all message scenarios
