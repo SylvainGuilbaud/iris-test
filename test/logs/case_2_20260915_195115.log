@@ -1,0 +1,100 @@
+[2026-09-15 19:51:15] Case 2 scenario test started
+[2026-09-15 19:51:15] Log file: /Users/guilbaud/git/iris-test/test/logs/case_2_20260915_195115.log
+[2026-09-15 19:51:15] START short relay: 3 messages
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 1 / controlId=case-2-195115-01 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195115-01|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195115-01
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 2 / controlId=case-2-195115-02 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195115-02|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195115-02
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 3 / controlId=case-2-195115-03 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195115-03|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195115-03
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] RESULT PASS short relay
+[2026-09-15 19:51:16] START medium relay: 5 messages
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 1 / controlId=case-2-195116-01 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-01|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195116-01
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 2 / controlId=case-2-195116-02 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-02|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195116-02
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 3 / controlId=case-2-195116-03 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-03|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195116-03
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 4 / controlId=case-2-195116-04 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-04|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195116-04
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 5 / controlId=case-2-195116-05 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-05|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195116-05
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] RESULT PASS medium relay
+[2026-09-15 19:51:16] START extended relay: 10 messages
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 1 / controlId=case-2-195116-01 ---
+[2026-09-15 19:51:16] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-01|P|2.5
+[2026-09-15 19:51:16] MSA|AA|case-2-195116-01
+[2026-09-15 19:51:16] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:16] 
+[2026-09-15 19:51:16] --- case 2 / send 2 / controlId=case-2-195116-02 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-02|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-02
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 3 / controlId=case-2-195116-03 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-03|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-03
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 4 / controlId=case-2-195116-04 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-04|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-04
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 5 / controlId=case-2-195116-05 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-05|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-05
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 6 / controlId=case-2-195116-06 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-06|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-06
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 7 / controlId=case-2-195116-07 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-07|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-07
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 8 / controlId=case-2-195116-08 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-08|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-08
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 9 / controlId=case-2-195116-09 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-09|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-09
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] 
+[2026-09-15 19:51:17] --- case 2 / send 10 / controlId=case-2-195116-10 ---
+[2026-09-15 19:51:17] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609151951||ACK^A28|case-2-195116-10|P|2.5
+[2026-09-15 19:51:17] MSA|AA|case-2-195116-10
+[2026-09-15 19:51:17] Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.
+[2026-09-15 19:51:17] RESULT PASS extended relay
+[2026-09-15 19:51:17] SUMMARY passed=3 failed=0
+[2026-09-15 19:51:17] FINAL PASS Case 2 completed all message scenarios
