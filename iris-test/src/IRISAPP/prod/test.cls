@@ -56,8 +56,10 @@ XData ProductionDefinition
     <Setting Target="Host" Name="BadMessageHandler">BadMessageHandler</Setting>
     <Setting Target="Host" Name="RuleLogging">a</Setting>
   </Item>
-  <Item Name="Ens.Alert" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+  <Item Name="Ens.Alert" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.AlertRule</Setting>
+    <Setting Target="Host" Name="AlertOnError">0</Setting>
+    <Setting Target="Host" Name="RuleLogging">a</Setting>
   </Item>
   <Item Name="vers LIS ASTM E1394" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
@@ -233,9 +235,16 @@ XData ProductionDefinition
     <Setting Target="Host" Name="AlertOnError">1</Setting>
     <Setting Target="Host" Name="RetryInterval">60</Setting>
     <Setting Target="Adapter" Name="ConnectTimeout">10</Setting>
-    <Setting Target="Host" Name="AlertRetryGracePeriod">300</Setting>
+    <Setting Target="Host" Name="AlertRetryGracePeriod">3</Setting>
   </Item>
   <Item Name="ALERTES" Category="" ClassName="EnsLib.EMail.AlertOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="AlertOnError">0</Setting>
+    <Setting Target="Adapter" Name="From">interop@iris.com</Setting>
+    <Setting Target="Adapter" Name="Recipient">alertes@iris.com</Setting>
+    <Setting Target="Adapter" Name="SMTPServer">smtp</Setting>
+  </Item>
+  <Item Name="aaaaa" Category="" ClassName="EnsLib.MsgRouter.RoutingEngine" PoolSize="1" Enabled="false" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
+    <Setting Target="Host" Name="BusinessRuleName">IRISAPP.prod.aaaaaRoutingRule</Setting>
   </Item>
 </Production>
 }

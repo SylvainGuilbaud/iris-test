@@ -42,22 +42,23 @@ Cette erreur concerne la tentative de reconnexion. L'opération reste active et 
 
 `Ens.Alert` reçoit les alertes générées par les composants de la production et les traite avec une règle de routage. Il ne supprime pas l'erreur technique déjà écrite dans le journal et ne modifie pas le mécanisme de retry.
 
-Une règle peut filtrer uniquement les alertes de cette opération :
+La règle `Ens.Alert` filtre uniquement le contenu de `AlertText`, sans filtrer sur la source :
 
-```text
-SourceConfigName = PatientsIn_2Op_HL7ADT_MLLP_DGLabOld
-AlertText contient ErrOutConnectExpired
-Action = DELETE
+```xml
+<constraint name="msgClass" value="Ens.AlertRequest"></constraint>
+<when condition="Document.AlertText[&quot;ErrOutConnectExpired&quot;">
+    <return></return>
+</when>
 ```
 
-Cette action supprime uniquement l'alerte correspondante. Les autres alertes continuent d'être traitées par `Ens.Alert`.
+Le `return` arrête le traitement de cette alerte dans `Ens.Alert`. L'alerte de déconnexion n'est donc pas transmise à l'opération `ALERTES`, tandis que les autres alertes continuent d'être routées normalement.
 
-Le contexte de la règle doit être `Ens.AlertRequest`, car les propriétés `SourceConfigName` et `AlertText` appartiennent au message d'alerte. Utiliser le contexte `EnsLib.MsgRouter.RoutingEngine` provoque une erreur `PROPERTY DOES NOT EXIST` sur `AlertText`.
+La règle s'applique donc à toute alerte dont le contenu contient `ErrOutConnectExpired`, quelle que soit sa source.
 
 ## À retenir
 
 - Une perte de connexion produit d'abord un warning.
 - Un échec de reconnexion après `ConnectTimeout` produit une erreur `ErrOutConnectExpired`.
 - `AlertOnError=0` masque l'alerte, mais pas l'erreur du journal.
-- Une règle `Ens.Alert` ciblée peut supprimer uniquement les alertes de reconnexion de cette opération.
+- Une règle `Ens.Alert` ciblée retourne les alertes dont `AlertText` contient `ErrOutConnectExpired`, sans les transmettre à `ALERTES`.
 - La cible doit rester disponible ou être remplacée par un listener/proxy permanent si l'opération reste activée en permanence.
