@@ -123,7 +123,7 @@ python3 test/send_robot_order.py --scenario failing
 
 Le script affiche l'ACK MLLP reçu et le code `MSA-1`. Le scénario nominal retourne `AA`. Le scénario sans segment RXE retourne `AE` ; le scénario sans dose est journalisé comme rejet métier dans l'opération `robot de préparation`. Le détail est consultable dans le Visual Trace et dans les logs de production.
 
-### 3. Flux des tickets WRC
+### 3. Flux des cas
 
 La production contient également trois flux techniques. Chaque service reçoit un message HL7 `ADT^A28` en MLLP :
 
@@ -141,7 +141,7 @@ python3 test/case_2.py
 python3 test/case_3.py
 ```
 
-Le cas 1 simule une déconnexion du client immédiatement après l'envoi, puis envoie plusieurs messages de suivi sur de nouvelles connexions. Le cas 2 reproduit le WRC 1014756 : le `MSA-1=AR` du LAB est retourné au lieu d'un `CE` synthétique. Le cas 3 reproduit le WRC 1014797 : `ACK^A28^ACK` avec `MSH-9.3` renseigné est accepté par le contrôle de type ; l'ACK sortant peut être normalisé en `ACK^A28`.
+Le cas 1 simule une déconnexion du client immédiatement après l'envoi, puis envoie plusieurs messages de suivi sur de nouvelles connexions. Le cas 2 vérifie que le `MSA-1=AR` du LAB est retourné au lieu d'un `CE` synthétique. Le cas 3 vérifie que `ACK^A28^ACK` avec `MSH-9.3` renseigné est accepté par le contrôle de type ; l'ACK sortant peut être normalisé en `ACK^A28`.
 
 Lancer les scénarios de stabilité avec horodatage :
 

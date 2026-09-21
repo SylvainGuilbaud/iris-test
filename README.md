@@ -125,7 +125,7 @@ python3 test/send_robot_order.py --scenario failing
 
 The script displays the received MLLP ACK and its `MSA-1` code. The nominal scenario returns `AA`. The missing-RXE scenario returns `AE`; the missing-dose scenario is logged as a business rejection by the `robot de préparation` operation. Details are available in the Visual Trace and production logs.
 
-### 3. WRC case flows
+### 3. Case flows
 
 The production also contains three technical case flows. Each service accepts an HL7 `ADT^A28` message over MLLP:
 
@@ -143,7 +143,7 @@ python3 test/case_2.py
 python3 test/case_3.py
 ```
 
-Case 1 simulates one client disconnect immediately after sending a message, then sends follow-up messages on new connections. Case 2 reproduces WRC 1014756: downstream `MSA-1=AR` is returned instead of a synthetic `CE`. Case 3 reproduces WRC 1014797: `ACK^A28^ACK` with populated `MSH-9.3` is accepted by the reply-type check; the outbound ACK may be normalized to `ACK^A28`.
+Case 1 simulates one client disconnect immediately after sending a message, then sends follow-up messages on new connections. Case 2 verifies that downstream `MSA-1=AR` is returned instead of a synthetic `CE`. Case 3 verifies that `ACK^A28^ACK` with populated `MSH-9.3` is accepted by the reply-type check; the outbound ACK may be normalized to `ACK^A28`.
 
 Run the timestamped stability scenarios:
 

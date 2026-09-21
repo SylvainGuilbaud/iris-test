@@ -165,7 +165,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="CaseName">case 1</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="case 2 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 2 / WRC 1014756: real GAM-LAB path, downstream AR forwarded instead of synthetic CE" LogTraceEvents="true" Schedule="">
+  <Item Name="case 2 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 2: real GAM-LAB path, downstream AR forwarded instead of synthetic CE" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Port">29102</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
@@ -184,7 +184,7 @@ XData ProductionDefinition
     <Setting Target="Host" Name="CaseName">case 2</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="case 3 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 3 / WRC 1014797: real GAM-LAB path, ACK^A28^ACK accepted with MSH-9.3" LogTraceEvents="true" Schedule="">
+  <Item Name="case 3 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 3: real GAM-LAB path, ACK^A28^ACK accepted with MSH-9.3" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Port">29103</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
