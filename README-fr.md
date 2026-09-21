@@ -123,14 +123,14 @@ python3 test/send_robot_order.py --scenario failing
 
 Le script affiche l'ACK MLLP reçu et le code `MSA-1`. Le scénario nominal retourne `AA`. Le scénario sans segment RXE retourne `AE` ; le scénario sans dose est journalisé comme rejet métier dans l'opération `robot de préparation`. Le détail est consultable dans le Visual Trace et dans les logs de production.
 
-### 3. Trois flux de cas
+### 3. Flux des tickets WRC
 
 La production contient également trois flux techniques. Chaque service reçoit un message HL7 `ADT^A28` en MLLP :
 
 ```text
 Cas 1 : case 1 service - TCP (port 29101) -> case 1 router -> case 1 operation
-Cas 2 : case 2 service - TCP (port 29102) -> case 2 router -> case 2 operation
-Cas 3 : case 3 service - TCP (port 29103) -> case 3 router -> case 3 operation
+Cas 2 : case 2 service - TCP (port 29102) -> vers Lab HL7 - TCP -> Lab simulateur (AR)
+Cas 3 : case 3 service - TCP (port 29103) -> vers Lab HL7 - TCP -> Lab simulateur (AR)
 ```
 
 Lancer un test direct :
@@ -141,7 +141,7 @@ python3 test/case_2.py
 python3 test/case_3.py
 ```
 
-Le cas 1 simule une déconnexion du client immédiatement après l'envoi, puis envoie plusieurs messages de suivi sur de nouvelles connexions. Le cas 2 vérifie la réponse de rejet en aval. Le cas 3 vérifie l'acceptation de la forme de réponse `ACK^A28^ACK`. Tous les ACK générés doivent avoir le `DocType=2.5:ACK` d'IRIS dans le Visual Trace.
+Le cas 1 simule une déconnexion du client immédiatement après l'envoi, puis envoie plusieurs messages de suivi sur de nouvelles connexions. Le cas 2 reproduit le WRC 1014756 : le `MSA-1=AR` du LAB est retourné au lieu d'un `CE` synthétique. Le cas 3 reproduit le WRC 1014797 : `ACK^A28^ACK` avec `MSH-9.3` renseigné est accepté par le contrôle de type ; l'ACK sortant peut être normalisé en `ACK^A28`.
 
 Lancer les scénarios de stabilité avec horodatage :
 
