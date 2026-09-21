@@ -39,7 +39,7 @@ Method OnReplyDocument(ByRef pReplyDocument As EnsLib.HL7.Message, pRequest As E
 		}
 	}
 	If (tMSA1 = "AR") || (tMSA1 = "CR") {
-		$$$LOGWARNING("ACK negatif recu du LAB (MSA-1="_tMSA1_") - traite en Completed OK, sans retry. Type="_tType_", ControlId="_tControlId_", Motif="_tReason)
+		$$$LOGERROR("ACK negatif recu du LAB (MSA-1="_tMSA1_") - ACK original conserve pour GAM, sans retry. Type="_tType_", ControlId="_tControlId_", Motif="_tReason)
 	}
 	Quit
 }

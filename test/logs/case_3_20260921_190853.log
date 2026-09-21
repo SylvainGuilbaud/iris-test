@@ -1,0 +1,100 @@
+[2026-09-21 19:08:53] Case 3 scenario test started
+[2026-09-21 19:08:53] Log file: /Users/guilbaud/git/iris-test/test/logs/case_3_20260921_190853.log
+[2026-09-21 19:08:53] START short acceptance: 3 messages
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 1 / controlId=case-3-190853-01 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-01|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-01
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 2 / controlId=case-3-190853-02 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-02|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-02
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 3 / controlId=case-3-190853-03 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-03|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-03
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:53] RESULT PASS short acceptance
+[2026-09-21 19:08:53] START medium acceptance: 5 messages
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 1 / controlId=case-3-190853-01 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-01|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-01
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 2 / controlId=case-3-190853-02 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-02|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-02
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 3 / controlId=case-3-190853-03 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-03|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-03
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 4 / controlId=case-3-190853-04 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-04|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-04
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:53] 
+[2026-09-21 19:08:53] --- case 3 / send 5 / controlId=case-3-190853-05 ---
+[2026-09-21 19:08:53] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190853-05|P|2.5
+[2026-09-21 19:08:53] MSA|AR|case-3-190853-05
+[2026-09-21 19:08:53] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] RESULT PASS medium acceptance
+[2026-09-21 19:08:54] START extended acceptance: 10 messages
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 1 / controlId=case-3-190854-01 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-01|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-01
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 2 / controlId=case-3-190854-02 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-02|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-02
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 3 / controlId=case-3-190854-03 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-03|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-03
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 4 / controlId=case-3-190854-04 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-04|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-04
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 5 / controlId=case-3-190854-05 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-05|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-05
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 6 / controlId=case-3-190854-06 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-06|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-06
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 7 / controlId=case-3-190854-07 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-07|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-07
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 8 / controlId=case-3-190854-08 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-08|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-08
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 9 / controlId=case-3-190854-09 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-09|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-09
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] 
+[2026-09-21 19:08:54] --- case 3 / send 10 / controlId=case-3-190854-10 ---
+[2026-09-21 19:08:54] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211908||ACK^A28|case-3-190854-10|P|2.5
+[2026-09-21 19:08:54] MSA|AR|case-3-190854-10
+[2026-09-21 19:08:54] PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28
+[2026-09-21 19:08:54] RESULT PASS extended acceptance
+[2026-09-21 19:08:54] SUMMARY passed=3 failed=0
+[2026-09-21 19:08:54] FINAL PASS Case 3 completed all message scenarios

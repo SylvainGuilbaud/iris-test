@@ -1,0 +1,100 @@
+[2026-09-21 19:22:13] Case 2 scenario test started
+[2026-09-21 19:22:13] Log file: /Users/guilbaud/git/iris-test/test/logs/case_2_20260921_192213.log
+[2026-09-21 19:22:13] START short relay: 3 messages
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 1 / controlId=case-2-192213-01 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192213-01|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192213-01
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 2 / controlId=case-2-192214-02 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-02|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-02
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 3 / controlId=case-2-192214-03 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-03|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-03
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] RESULT PASS short relay
+[2026-09-21 19:22:14] START medium relay: 5 messages
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 1 / controlId=case-2-192214-01 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-01|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-01
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 2 / controlId=case-2-192214-02 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-02|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-02
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 3 / controlId=case-2-192214-03 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-03|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-03
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 4 / controlId=case-2-192214-04 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-04|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-04
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 5 / controlId=case-2-192214-05 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-05|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-05
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:14] RESULT PASS medium relay
+[2026-09-21 19:22:14] START extended relay: 10 messages
+[2026-09-21 19:22:14] 
+[2026-09-21 19:22:14] --- case 2 / send 1 / controlId=case-2-192214-01 ---
+[2026-09-21 19:22:14] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-01|P|2.5
+[2026-09-21 19:22:14] MSA|AR|case-2-192214-01
+[2026-09-21 19:22:14] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 2 / controlId=case-2-192214-02 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-02|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-02
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 3 / controlId=case-2-192214-03 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-03|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-03
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 4 / controlId=case-2-192214-04 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-04|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-04
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 5 / controlId=case-2-192214-05 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-05|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-05
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 6 / controlId=case-2-192214-06 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-06|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-06
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 7 / controlId=case-2-192214-07 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-07|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-07
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 8 / controlId=case-2-192214-08 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-08|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-08
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 9 / controlId=case-2-192214-09 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-09|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-09
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] 
+[2026-09-21 19:22:15] --- case 2 / send 10 / controlId=case-2-192214-10 ---
+[2026-09-21 19:22:15] MSH|^~\&|EnsembleHL7|ISC|PAS|HOSPITAL|202609211922||ACK^A28|case-2-192214-10|P|2.5
+[2026-09-21 19:22:15] MSA|AR|case-2-192214-10
+[2026-09-21 19:22:15] PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated
+[2026-09-21 19:22:15] RESULT PASS extended relay
+[2026-09-21 19:22:15] SUMMARY passed=3 failed=0
+[2026-09-21 19:22:15] FINAL PASS Case 2 completed all message scenarios

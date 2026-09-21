@@ -19,9 +19,10 @@ Method OnConstructReply(Output pReplyDoc As EnsLib.EDI.Document, pOriginalDoc As
 {
 	Set tSC = ##super(.pReplyDoc, pOriginalDoc, .pReplyCode, .pSC, pEarlyAck)
 	If $IsObject($Get(pReplyDoc)) {
-		Do pReplyDoc.SetValueAt("AR", "MSA:1")
-		Do pReplyDoc.SetValueAt("Rejection (simulateur LAB)", "MSA:3")
-		Do pReplyDoc.SetValueAt("ACK", "MSH:9.3")
+		Set tControlId = pOriginalDoc.GetValueAt("MSH:10")
+		Set tRaw = "MSH|^~\\&|LAB|SIM|IRIS|GAM|"_$ZDATETIME($H,3,1,3)_"||ACK^A28^ACK|"_tControlId_"|P|2.5"_$C(13)_"MSA|AR|"_tControlId_"|Rejection (simulateur LAB)"
+		Set pReplyDoc = ##class(EnsLib.HL7.Message).ImportFromString(tRaw,.tSC)
+		If $IsObject($Get(pReplyDoc)) Set pReplyDoc.DocType = "HL7v25IHE:ACK_A28_ACK"
 	}
 	Set pReplyCode = "AR"
 	Quit tSC

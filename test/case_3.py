@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Case 3 - ACK^A28^ACK with MSH-9.3 populated is a valid reply.
 
-This script sends an ADT^A28 request to the case 3 listener. The expected reply is
-an ACK^A28^ACK (three components) and the response should be accepted even when the
-third component is populated.
+This script sends an ADT^A28 request through the real GAM -> IRIS -> LAB path.
+The expected reply is an ACK^A28^ACK (three components), and it must not be
+rejected as a reply type mismatch.
 """
 
 import argparse
@@ -59,7 +59,16 @@ def main() -> int:
             print(f"Transport failure: {exc}")
             return 1
         print(ack or "<no ACK>")
-        print("Expected behavior: a valid ACK^A28^ACK reply is accepted even when MSH-9.3 is populated.")
+        lines = ack.splitlines()
+        msh = next((line for line in lines if line.startswith("MSH|")), "")
+        msa = next((line for line in lines if line.startswith("MSA|")), "")
+        msh_fields = msh.split("|")
+        msa_fields = msa.split("|")
+        msh9 = msh_fields[8] if len(msh_fields) > 8 else ""
+        if msh9 != "ACK^A28" or len(msa_fields) < 3 or msa_fields[1] != "AR":
+            print("FAIL: ACK^A28^ACK with populated MSH-9.3 was not accepted")
+            return 1
+        print("PASS: ACK^A28^ACK with populated MSH-9.3 was accepted; outbound ACK normalized to ACK^A28")
     return 0
 
 

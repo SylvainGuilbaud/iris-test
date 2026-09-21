@@ -115,11 +115,11 @@ XData ProductionDefinition
   <Item Name="vers ASTM E1394 - FICHIER" Category="" ClassName="EnsLib.EDI.ASTM.Operation.FileOperation" PoolSize="1" Enabled="true" Foreground="false" Comment="" LogTraceEvents="false" Schedule="">
     <Setting Target="Adapter" Name="FilePath">/data/ASTM-E1394/out/</Setting>
   </Item>
-  <Item Name="de GAM ADT^A28 - TCP" Category="GAM-LAB" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception ADT (ex: A28) depuis GAM en TCP/MLLP. AckMode=App: GAM recoit un ACK applicatif (AA/AE) apres traitement LAB; le rejet AR du LAB est journalise/alerte par l&apos;operation (OnReplyDocument), non restitue verbatim (limite standard)" LogTraceEvents="true" Schedule="">
+  <Item Name="de GAM ADT^A28 - TCP" Category="GAM-LAB" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="Reception ADT (ex: A28) depuis GAM en TCP/MLLP. Le service attend directement la reponse du LAB; un AR est journalise en erreur sans etre remplace par un CE" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Port">29020</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">routeur Lab</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">vers Lab HL7 - TCP</Setting>
     <Setting Target="Host" Name="AckMode">App</Setting>
     <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
@@ -165,11 +165,11 @@ XData ProductionDefinition
     <Setting Target="Host" Name="CaseName">case 1</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="case 2 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 2: downstream AR should be relayed unchanged; do not synthesize CE" LogTraceEvents="true" Schedule="">
+  <Item Name="case 2 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 2 / WRC 1014756: real GAM-LAB path, downstream AR forwarded instead of synthetic CE" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Port">29102</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">case 2 router</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">vers Lab HL7 - TCP</Setting>
     <Setting Target="Host" Name="AckMode">App</Setting>
     <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>
@@ -184,11 +184,11 @@ XData ProductionDefinition
     <Setting Target="Host" Name="CaseName">case 2</Setting>
     <Setting Target="Host" Name="ArchiveIO">1</Setting>
   </Item>
-  <Item Name="case 3 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 3: ACK^A28^ACK with MSH-9.3 populated must be accepted" LogTraceEvents="true" Schedule="">
+  <Item Name="case 3 service - TCP" Category="CASE-ISSUES" ClassName="EnsLib.HL7.Service.TCPService" PoolSize="1" Enabled="true" Foreground="false" Comment="case 3 / WRC 1014797: real GAM-LAB path, ACK^A28^ACK accepted with MSH-9.3" LogTraceEvents="true" Schedule="">
     <Setting Target="Adapter" Name="Port">29103</Setting>
     <Setting Target="Adapter" Name="JobPerConnection">1</Setting>
     <Setting Target="Host" Name="MessageSchemaCategory">HL7v25IHE:ADT_AXX</Setting>
-    <Setting Target="Host" Name="TargetConfigNames">case 3 router</Setting>
+    <Setting Target="Host" Name="TargetConfigNames">vers Lab HL7 - TCP</Setting>
     <Setting Target="Host" Name="AckMode">App</Setting>
     <Setting Target="Host" Name="UseAckCommitCodes">0</Setting>
     <Setting Target="Host" Name="DefCharEncoding">Native</Setting>

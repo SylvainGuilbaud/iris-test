@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""Case 2 - downstream AR must be relayed unchanged.
+"""Case 2 - downstream AR must be forwarded instead of a synthetic CE ACK.
 
-The case emulates a downstream laboratory that rejects the message with MSA-1=AR.
-The production should relay that original AR back to the sender without replacing it
-with a synthetic IRIS-generated CE ack.
+The test uses the real GAM -> IRIS -> LAB path. The production must relay the
+downstream AR back to the sender without replacing it with a synthetic CE ACK.
 """
 
 import argparse
@@ -59,7 +58,14 @@ def main() -> int:
             print(f"Transport failure: {exc}")
             return 1
         print(ack or "<no ACK>")
-        print("Expected behavior: the downstream reject must come back as MSA-1=AR, not an IRIS-generated CE.")
+        lines = ack.splitlines()
+        msh = next((line for line in lines if line.startswith("MSH|")), "")
+        msa = next((line for line in lines if line.startswith("MSA|")), "")
+        msa_fields = msa.split("|")
+        if len(msa_fields) < 3 or msa_fields[1] != "AR" or msa_fields[2] != control_id:
+            print("FAIL: expected the downstream negative acknowledgment with MSA-1=AR, not a synthetic CE")
+            return 1
+        print("PASS: downstream negative acknowledgment was forwarded with MSA-1=AR; no synthetic CE was generated")
     return 0
 
 
